@@ -7,56 +7,78 @@ from crewai.project import CrewBase, agent, crew, task
 
 @CrewBase
 class Rankcrewai():
-	"""Rankcrewai crew"""
+        """Rankcrewai crew"""
 
-	# Learn more about YAML configuration files here:
-	# Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
-	# Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
-	agents_config = 'config/agents.yaml'
-	tasks_config = 'config/tasks.yaml'
+        # Learn more about YAML configuration files here:
+        # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
+        # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
+        agents_config = 'config/agents.yaml'
+        tasks_config = 'config/tasks.yaml'
 
-	# If you would like to add tools to your agents, you can learn more about it here:
-	# https://docs.crewai.com/concepts/agents#agent-tools
-	@agent
-	def researcher(self) -> Agent:
-		return Agent(
-			config=self.agents_config['researcher'],
-			verbose=True
-		)
+        # If you would like to add tools to your agents, you can learn more about it here:
+        # https://docs.crewai.com/concepts/agents#agent-tools
+        @agent
+        def researcher_agent(self) -> Agent:
+                return Agent(
+                        config=self.agents_config['researcher_agent'],
+                        tools=[already_exist]
+                        verbose=True
+                )
 
-	@agent
-	def reporting_analyst(self) -> Agent:
-		return Agent(
-			config=self.agents_config['reporting_analyst'],
-			verbose=True
-		)
+        @agent
+        def keyword_agent(self) -> Agent:
+                return Agent(
+                        config=self.agents_config['keyword_agent'],
+                        verbose=True
+                )
 
-	# To learn more about structured task outputs, 
-	# task dependencies, and task callbacks, check out the documentation:
-	# https://docs.crewai.com/concepts/tasks#overview-of-a-task
-	@task
-	def research_task(self) -> Task:
-		return Task(
-			config=self.tasks_config['research_task'],
-		)
+        @agent
+        def seo_writter(self) -> Agent:
+                return Agent(
+                        config=self.agents_config['seo_writter'],
+                        verbose=True
+                )
 
-	@task
-	def reporting_task(self) -> Task:
-		return Task(
-			config=self.tasks_config['reporting_task'],
-			output_file='report.md'
-		)
+        @agent
+        def seo_manager(self) -> Agent:
+                return Agent(
+                        config=self.agents_config['seo_manager'],
+                        verbose=True
+                )
 
-	@crew
-	def crew(self) -> Crew:
-		"""Creates the Rankcrewai crew"""
-		# To learn how to add knowledge sources to your crew, check out the documentation:
-		# https://docs.crewai.com/concepts/knowledge#what-is-knowledge
+        # To learn more about structured task outputs, 
+        # task dependencies, and task callbacks, check out the documentation:
+        # https://docs.crewai.com/concepts/tasks#overview-of-a-task
+        @task
+        def research_task(self) -> Task:
+                return Task(
+                        config=self.tasks_config['research_task'],
+                )
 
-		return Crew(
-			agents=self.agents, # Automatically created by the @agent decorator
-			tasks=self.tasks, # Automatically created by the @task decorator
-			process=Process.sequential,
-			verbose=True,
-			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
-		)
+        @task
+        def keyword_task(self) -> Task:
+                return Task(
+                        config=self.tasks_config['keyword_task'],
+                )
+
+        @task
+        def writter_task(self) -> Task:
+                return Task(
+                        config=self.tasks_config['writter_task'],
+                        output_file='blog.html'
+                )
+
+        @crew
+        def crew(self) -> Crew:
+                """Creates the Rankcrewai crew"""
+                # To learn how to add knowledge sources to your crew, check out the documentation:
+                # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
+
+                return Crew(
+                        agents=[researcher_agent, keyword_task, seo_writter],
+                        tasks=self.tasks, # Automatically created by the @task decorator
+                        manager_agent=seo_manager,
+                        process=Process.sequential,
+                        verbose=True,
+                        # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+                )
