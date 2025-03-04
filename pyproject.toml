@@ -1,20 +1,19 @@
 [project]
-name = "rankcrewai"
+name = "testcrew"
 version = "0.1.0"
-description = "RankCrewai using crewAI"
+description = "testcrew using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.13"
 dependencies = [
-    "crewai[tools]>=0.102.0,<1.0.0",
-    "docling>=2.15.1",
+    "crewai[tools]>=0.102.0,<1.0.0"
 ]
 
 [project.scripts]
-rankcrewai = "rankcrewai.main:run"
-run_crew = "rankcrewai.main:run"
-train = "rankcrewai.main:train"
-replay = "rankcrewai.main:replay"
-test = "rankcrewai.main:test"
+testcrew = "testcrew.main:run"
+run_crew = "testcrew.main:run"
+train = "testcrew.main:train"
+replay = "testcrew.main:replay"
+test = "testcrew.main:test"
 
 [build-system]
 requires = ["hatchling"]

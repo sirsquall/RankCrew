@@ -1,16 +1,14 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai.tools import tool
-from bs4 import BeautifulSoup
-import requests
+from crewai_tools import SerperDevTool
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
 @CrewBase
-class Rankcrewai():
-        """Rankcrewai crew"""
+class Testcrew():
+        """Testcrew crew"""
 
         # Learn more about YAML configuration files here:
         # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
@@ -18,82 +16,74 @@ class Rankcrewai():
         agents_config = 'config/agents.yaml'
         tasks_config = 'config/tasks.yaml'
 
-        @tool
-        def already_exist() -> str:
-                """Useful to retrieve the live blog posts that already exist to avoid duplicates."""
-                r = requests.get("https://www.apolline.art/sitemap.xml")
-                xml = r.text
-                
-                soup = BeautifulSoup(xml, "lxml")
-                sitemap_tags = soup.find_all("sitemap")
-                for sitemap in sitemap_tags:
-                xml_dict[sitemap.findNext("loc").text] = sitemap.findNext("lastmod").text
-                
-                return xml_dict
-        
         # If you would like to add tools to your agents, you can learn more about it here:
         # https://docs.crewai.com/concepts/agents#agent-tools
         @agent
-        def researcher_agent(self) -> Agent:
+        def content_planner(self) -> Agent:
                 return Agent(
-                        config=self.agents_config['researcher_agent'],
-                        tools=[already_exist]
-                        verbose=True
+                        config=self.agents_config['content_planner'],
+                        tools=[SerperDevTool()],
+                        verbose=True,
                 )
 
         @agent
-        def keyword_agent(self) -> Agent:
+        def content_writer(self) -> Agent:
                 return Agent(
-                        config=self.agents_config['keyword_agent'],
-                        verbose=True
+                        config=self.agents_config['content_writer'],
+                        verbose=True,
                 )
 
         @agent
-        def seo_writter(self) -> Agent:
+        def editor(self) -> Agent:
                 return Agent(
-                        config=self.agents_config['seo_writter'],
-                        verbose=True
+                        config=self.agents_config['editor'],
+                        verbose=True,
                 )
 
         @agent
         def seo_manager(self) -> Agent:
                 return Agent(
                         config=self.agents_config['seo_manager'],
-                        verbose=True
+                        verbose=True,
                 )
-
+        
         # To learn more about structured task outputs, 
         # task dependencies, and task callbacks, check out the documentation:
         # https://docs.crewai.com/concepts/tasks#overview-of-a-task
         @task
-        def research_task(self) -> Task:
+        def planner_task(self) -> Task:
                 return Task(
-                        config=self.tasks_config['research_task'],
+                        config=self.tasks_config['planner_task'],
                 )
 
         @task
-        def keyword_task(self) -> Task:
+        def write_task(self) -> Task:
                 return Task(
-                        config=self.tasks_config['keyword_task'],
+                        config=self.tasks_config['write_task'],
                 )
 
         @task
-        def writter_task(self) -> Task:
+        def editor_task(self) -> Task:
                 return Task(
-                        config=self.tasks_config['writter_task'],
-                        output_file='blog.html'
+                        config=self.tasks_config['editor_task'],
                 )
+
 
         @crew
         def crew(self) -> Crew:
-                """Creates the Rankcrewai crew"""
+                """Creates the Testcrew crew"""
                 # To learn how to add knowledge sources to your crew, check out the documentation:
                 # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
 
+                manager = next(
+                        (ag for ag in self.agents if ag.role.strip() == "SEO manager"),
+                        None
+                )
+
                 return Crew(
-                        agents=[researcher_agent, keyword_task, seo_writter],
+                        agents=self.agents, # Automatically created by the @agent decorator
                         tasks=self.tasks, # Automatically created by the @task decorator
-                        manager_agent=seo_manager,
+                        manager_agent=manager,
                         process=Process.sequential,
                         verbose=True,
                         # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
