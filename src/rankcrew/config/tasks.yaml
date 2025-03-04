@@ -1,0 +1,38 @@
+idea_planner_task:
+  description: >
+    1. Generate several SEO content ideas, for this category {topic}
+    2. You propose relevant ideas that helps the website to be in a better position in Google Search, trying to propose idea that answer google search base  on this category {topic}
+    3. make sure that thos ideas have not been writed already in https://apolline.art/ by using the tool already exist
+  expected_output: >
+    A comprehensive list of ideas
+  agent: idea_planner
+
+planner_task:
+  description: >
+    1. Select one SEO ideas from the list of ideas made by the idea planner
+    2. Identify the target audience, considering their interests and pain points.
+    3. Develop a detailed content outline including an introduction, key points, and a call to action.
+    4. Include SEO keywords and relevant data or sources.
+  expected_output: >
+    A comprehensive content plan document with an outline, audience analysis, SEO keywords, and resources.
+  agent: content_planner
+
+
+write_task:
+  description: >
+    1. Use the outlined result given by the content writer to write a compelling blog post for Apolline.art blog section
+    2. Incorporate SEO keywords naturally.
+    3. Sections/Subtitles are properly named in an engaging manner.
+    4. Ensure the post is structured with an engaging introduction, insightful body, and a summarizing conclusion.
+    5. Proofread for grammatical errors and alignment with the brand's voice.
+  expected_output: >
+    A well-written plan on how to best write the post in markdown format, with clear instruction
+  agent: content_writer
+  
+editor_task:
+  description: >
+    Write the given blog post following the content write insturction and align with the brand's voice factual, insighfull, postive and rewarding
+    This blog post should be ready to be published on the blog
+  expected_output: >
+    A well-written blog post and appealing in markdown format, ready for publication, each section should have 6 or 7 paragraphs
+  agent: editor  

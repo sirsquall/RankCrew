@@ -1,14 +1,15 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool
+from rankcrew.tools.custom_tool import AlreadyExist
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
 @CrewBase
-class Testcrew():
-        """Testcrew crew"""
+class Rankcrew():
+        """Rankcrew crew"""
 
         # Learn more about YAML configuration files here:
         # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
@@ -19,10 +20,15 @@ class Testcrew():
         # If you would like to add tools to your agents, you can learn more about it here:
         # https://docs.crewai.com/concepts/agents#agent-tools
         @agent
+        def idea_planner(self) -> Agent:
+                return Agent(
+                        config=self.agents_config['idea_planner'],
+                        verbose=True,
+                )
+        @agent
         def content_planner(self) -> Agent:
                 return Agent(
                         config=self.agents_config['content_planner'],
-                        tools=[SerperDevTool()],
                         verbose=True,
                 )
 
@@ -51,6 +57,12 @@ class Testcrew():
         # task dependencies, and task callbacks, check out the documentation:
         # https://docs.crewai.com/concepts/tasks#overview-of-a-task
         @task
+        def idea_planner_task(self) -> Task:
+                return Task(
+                        config=self.tasks_config['idea_planner_task'],
+                )
+
+        @task
         def planner_task(self) -> Task:
                 return Task(
                         config=self.tasks_config['planner_task'],
@@ -71,7 +83,7 @@ class Testcrew():
 
         @crew
         def crew(self) -> Crew:
-                """Creates the Testcrew crew"""
+                """Creates the Rankcrew crew"""
                 # To learn how to add knowledge sources to your crew, check out the documentation:
                 # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
 
