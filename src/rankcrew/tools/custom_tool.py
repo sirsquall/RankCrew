@@ -1,73 +1,71 @@
-import requests 
-import re
 import os
+import requests
 from crewai.tools import BaseTool
 from typing import Type
 from pydantic import BaseModel, Field
-from bs4 import BeautifulSoup
-from urllib.request import Request, urlopen
 
 class DrupalPublishToolInput(BaseModel):
     """
-    Input schema for "DrupalPublishTool".
-    Expects a dictionary with at least the keys: 'title' and 'body'.
+    Input schema for 'DrupalPublishTool'.
+    Expects a single dict 'argument' with two keys: 'title' and 'body'.
     """
     argument: dict = Field(
         ...,
-        description="Dictionary containing 'title' and 'body' for the new blog post."
+        description="Dictionary containing the keys 'title' and 'body' for the blog post."
     )
 
 class DrupalPublishTool(BaseTool):
     """
-    Publishes a blog post to Drupal via JSON:API.
-    Accepts a single 'argument' dict containing 'title' and 'body'.
+    Publishes a blog post to a Drupal site via JSON:API.
+    Requires 'title' and 'body' at the top-level of 'argument'.
     """
     name: str = "DrupalPublishTool"
     description: str = (
-        "Publishes a blog post to a Drupal site. "
-        "Input requires a dictionary with 'title' and 'body'."
+        "Publishes a blog post to Drupal. "
+        "Input requires a dict with 'title' and 'body' at the top level."
     )
     args_schema: Type[BaseModel] = DrupalPublishToolInput
 
     def _run(self, argument: dict) -> str:
         """
-        Publishes the blog post to Drupal via JSON:API.
+        Publishes the blog post to Drupal using JSON:API.
 
-        :param argument: Dictionary with keys 'title' and 'body'.
+        :param argument: Dict with keys 'title' and 'body'.
         :return: Status message (success or error details).
         """
-        # Extract values from the dictionary
-        title = argument.get("title", "")
-        body = argument.get("body", "")
+        # Extract fields directly from argument
+        title = argument.get("title", "").strip()
+        body = argument.get("body", "").strip()
 
-        # Optional: Check if title or body is empty
-        if not title.strip():
+        # Validate presence of title and body
+        if not title:
             return "Error: 'title' is missing or empty."
-        if not body.strip():
+        if not body:
             return "Error: 'body' is missing or empty."
 
         # Prepare the JSON:API payload
         payload = {
             "data": {
-                "type": "node--page",  # Replace with your Drupal content type if different
+                "type": "node--page",  # or your Drupal content type
                 "attributes": {
                     "title": title,
                     "body": {
-                        "value": body,       # HTML or text is fine here
+                        "value": body,
                         "format": "full_html"
                     }
                 }
             }
         }
 
-        # Retrieve environment variables for URL and authorization
+        # Retrieve endpoint from environment
         drupal_jsonapi_endpoint = os.environ.get("JSON_API_URL")
         if not drupal_jsonapi_endpoint:
-            return "Error: JSON_API_URL environment variable is not set."
+            return "Error: JSON_API_URL environment variable not set."
 
+        # Retrieve authorization key
         auth_key = os.environ.get("AUTHORIZATION_BASIC_KEY")
         if not auth_key:
-            return "Error: AUTHORIZATION_BASIC_KEY environment variable is not set."
+            return "Error: AUTHORIZATION_BASIC_KEY environment variable not set."
 
         headers = {
             "Accept": "application/vnd.api+json",
@@ -76,13 +74,12 @@ class DrupalPublishTool(BaseTool):
         }
 
         try:
-            # requests handles any necessary JSON escaping automatically:
             response = requests.post(
                 drupal_jsonapi_endpoint,
                 headers=headers,
                 json=payload
             )
-
+            # 201 = created successfully
             if response.status_code == 201:
                 data = response.json()
                 node_id = data["data"]["id"]
@@ -92,6 +89,5 @@ class DrupalPublishTool(BaseTool):
                     f"Failed to create new article. "
                     f"Status code: {response.status_code}, response: {response.text}"
                 )
-
         except requests.exceptions.RequestException as error:
             return f"Error occurred while publishing to Drupal: {str(error)}"
