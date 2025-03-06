@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import warnings
+import os
 
 from datetime import datetime
 
@@ -21,7 +22,7 @@ def run():
         'topic': 'Manga',
         'current_year': str(datetime.now().year)
     }
-    
+
     try:
         Rankcrew().crew().kickoff(inputs=inputs)
     except Exception as e:

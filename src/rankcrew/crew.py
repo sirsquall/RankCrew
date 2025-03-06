@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool
-from rankcrew.tools.custom_tool import AlreadyExist
+from rankcrew.tools.custom_tool import DrupalPublishTool
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -39,10 +39,12 @@ class Rankcrew():
                         verbose=True,
                 )
 
+        
         @agent
-        def editor(self) -> Agent:
+        def drupal_publisher(self) -> Agent:
                 return Agent(
-                        config=self.agents_config['editor'],
+                        config=self.agents_config['drupal_publisher'],
+                        tools=[DrupalPublishTool(result_as_answer=True)],
                         verbose=True,
                 )
 
@@ -75,11 +77,10 @@ class Rankcrew():
                 )
 
         @task
-        def editor_task(self) -> Task:
+        def publish_task(self) -> Task:
                 return Task(
-                        config=self.tasks_config['editor_task'],
-                )
-
+                        config=self.tasks_config['publish_task'],
+                )        
 
         @crew
         def crew(self) -> Crew:
