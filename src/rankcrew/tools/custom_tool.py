@@ -11,9 +11,9 @@ class DrupalPublishToolInput(BaseModel):
     """
     Input schema for "DrupalPublishTool".
     """
-    title: str = Field(..., description="Title of the new blog post.")
-    body: str = Field(..., description="Body content of the new blog post.")
-    
+    argument: dict = Field(...,description="Dictionary containing 'title' and 'body' for the new blog post."
+    )
+
 class DrupalPublishTool(BaseTool):
     """
     DrupalPublishTool to publish content to druapl
@@ -28,7 +28,7 @@ class DrupalPublishTool(BaseTool):
     # Link the tool arguments to your Pydantic model:
     args_schema: Type[BaseModel] = DrupalPublishToolInput
 
-    def _run(self, title: str, body: str) -> str:
+    def _run(self, argument: dict) -> str:
         """
         DrupalPublishTool to publish content to druapl
 
@@ -36,6 +36,9 @@ class DrupalPublishTool(BaseTool):
         :param body: The content/body of the blog post.
         :return: Status message (success or error details).
         """
+        # Extract values from the dictionary
+        title = argument.get("title", "")
+        body = argument.get("body", "")
 
         # Prepare the JSON:API payload
         payload = {
