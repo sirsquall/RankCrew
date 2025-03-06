@@ -1,10 +1,11 @@
+import requests 
+import re
+import os
 from crewai.tools import BaseTool
 from typing import Type
 from pydantic import BaseModel, Field
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
-import re
-import os
 
 class DrupalPublishToolInput(BaseModel):
     """
