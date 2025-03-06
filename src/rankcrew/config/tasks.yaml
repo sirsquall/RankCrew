@@ -41,7 +41,7 @@ write_task:
        - Body sections that align with the outline
        - A summarizing conclusion with a call-to-action (where relevant)
     4. Proofread for grammar, spelling, and clarity. 
-    5. Format the final content as a Markdown file name "Final blog post", ready to be published on apolline.art.
+    5. Format the final content as a the body well formated in html using the <h2> for the subsections named "Final blog post", ready to be published on apolline.art.
 
   expected_output: >
     A publication-ready blog post in Markdown, approximately 2,000 words, 
