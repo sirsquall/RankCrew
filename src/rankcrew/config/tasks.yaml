@@ -72,15 +72,15 @@ translater_task:
     8. Do not translate or alter HTML tags — only translate the visible content inside them.
 
   expected_output: >
-    all the translations in JSON formatted like that:
+    all the translations in JSON formatted like that, this output should be decodable immediatly, just put the JSON
     {
       "LANGCODE": {
         "title": "Titre de l'article",
-        "full_article": "<h2>...</h2><p>...</p>..."
+        "htmlContent": "<p>This has 'single' and \"double\" quotes</p>",
       },
       "LANGCODE": {
         "title": "عنوان المقال",
-        "full_article": "<div dir=\"rtl\"><h2>...</h2><p>...</p>...</div>"
+        "htmlContent: "<div dir=\"rtl\"><h2>...</h2><p>...</p>...</div>"
       },
       ...
     }
