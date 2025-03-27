@@ -35,9 +35,13 @@ def train():
     """
     Train the crew for a given number of iterations.
     """
-    inputs = {
-        'topic': 'Manga',
+   inputs = {
+        'topic': 'manga',
+        'company' : 'apolline',
+        'existing_articles' : '',
+        'language_list' : 'french, portuguese, arabic',
     }
+
     try:
         Rankcrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
@@ -59,8 +63,12 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        'topic': 'Manga',
+        'topic': 'manga',
+        'company' : 'apolline',
+        'existing_articles' : '',
+        'language_list' : 'french, portuguese, arabic',
     }
+
     try:
         Rankcrew().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
 
