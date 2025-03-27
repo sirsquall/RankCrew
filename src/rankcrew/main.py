@@ -35,7 +35,7 @@ def train():
     """
     Train the crew for a given number of iterations.
     """
-   inputs = {
+    inputs = {
         'topic': 'manga',
         'company' : 'apolline',
         'existing_articles' : '',
