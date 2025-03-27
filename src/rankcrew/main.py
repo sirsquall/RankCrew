@@ -19,8 +19,10 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'Manga',
-        'current_year': str(datetime.now().year)
+        'topic': 'manga',
+        'company' : 'apolline',
+        'existing_articles' : '',
+        'language_list' : 'french, portuguese, arabic',
     }
 
     try:

@@ -1,33 +1,38 @@
 idea_planner_task:
   description: >
-    1. Research the topic "{topic}" using available data (e.g., Google search, competitor research, keyword tools).
-    2. Compile a list of potential blog post ideas that would bring value to apolline.art’s audience.
-    3. Provide a short explanation or rationale (1-2 sentences) for each idea, focusing on why it might be good for SEO and brand goals.
-    4. Format the output as a Markdown report titled "Ideas Report."
+    1. Exclude the {existing_articles} from this research
+    2. Research the topic "{topic}" using available data (e.g., Google search, competitor research, keyword tools).
+    3. Compile a list of 10 potential seo blog post ideas that would bring value to {company} audience.
+    4. Provide a short explanation or rationale (1-2 sentences) for each idea, focusing on why it might be good for SEO and brand goals.
     5. Ensure it is easy to read and only includes well-articulated ideas (no fluff).
 
   expected_output: >
-    A clear, concise "Ideas Report" in Markdown, featuring multiple relevant blog topic suggestions with brief rationales.
+    A clear, concise "Blog Post Ideas" in Markdown, featuring multiple relevant seo blog topic suggestions with brief rationales.
 
   agent: idea_planner
 
 
 planner_task:
   description: >
-    1. Review the "Ideas Report" and select one "idea" that shows the highest potential for driving traffic and engagement.
-    2. Conduct further research on the chosen idea. If needed, refine SEO keywords or supporting subtopics.
-    3. Create a detailed content outline, specifying the blog structure (e.g., introduction, body sections, subheadings, conclusion).
-    4. List at least 5-10 relevant keywords (including primary and secondary ones).
-    5. Provide any additional resources or references that would help the writer (links, quotes, stats).
-    6. Format the output as a Markdown report titled "Idea Plan"
-    7. And store the title of the blog post as "Post Title"
+    1. Review the "Blog Post Ideas" and select one form the list, that shows the highest potential for driving traffic and engagement.
+    2. Conduct further research on the chosen idea. Refine SEO keywords or supporting subtopics based on actual search trends and musical theatre interest.
+    3. Include general keyword from {topic}.
+    4. Create a detailed content outline, specifying the blog structure (e.g., introduction, body sections, subheadings, conclusion).
+    5. List at least 10-20 relevant SEO keywords, organized as:
+       - Primary Keywords (main intent)
+       - Secondary Keywords (supporting context)
+       - Entity Keywords (specific musical titles, performers, or productions)
+    6. Provide any additional resources or references that would help the writer (links, quotes, stats, rankings, reviews, etc.).
+    7. Format the output as a Markdown report titled "Idea Plan".
+    8. Store the title of the blog post as "Post Title" and it should not be longuer than 60 characters
 
   expected_output: >
     A comprehensive "Idea Plan" in Markdown with:
     - Selected topic
-    - Keywords
-    - Structured outline with potential headings
-    - Helpful references/links
+    - Refined keywords including real musical names and search phrases
+    - Structured outline with potential H2/H3 headings
+    - Helpful references/links to support writing and SEO
+    - Metadata suggestions (meta title and meta description)
 
   agent: content_planner
 
@@ -36,31 +41,48 @@ write_task:
   description: >
     1. Using the "Idea Plan," write a final blog post of approximately 2,000 words.
     2. The structure should be in valid HTML:
-       - Body sections using <h2> for subsections.
+       - content sections using <h2> for subsections.
        - A concluding paragraph with any call-to-action.
-    3. Incorporate the keywords naturally, maintaining a factual, positive, and fun tone.
+    3. Incorporate the keywords naturally, maintaining a factual, positive, and good tone.
     4. Proofread for grammar, spelling, and clarity.
-    5. Output the final content as a single HTML string, named "Final blog post", and keep the "Post title" ready for publication on apolline.art.
+    5. Output the final content as a single HTML string, not an html page, but only the content section of the post
+    6. Named this content "Final blog post", and keep the "Post title" ready for publication on {company}.
+    7. Don't use complex words, it should be simple to read
+
 
   expected_output: >
-    A complete HTML blog post (~2,000 words) with:
+    - First line the Title
+    - Then the "Final blog post" a complete HTML blog post (~2,000 words) with:
     - Several <h2> subsections
     - Properly formatted paragraphs
     - Overall consistency, SEO-friendly keywords, and a brand-aligned voice.
-
+    - Ready to be published, no dummy data, well finilized
   agent: content_writer
 
 
-publish_task:
+translater_task:
   description: >
-    Take the "Final blog post" and the "Post Title" and  generated by the content writer
-    1. Take the "Post Title". If no <h1> is found or it's empty, use "Untitled".
-    3. Construct a dictionary: with title and body, the body contain the full "Final blog post"
-    4. Call "DrupalPublishTool" 
-    5. Return the tool's result (confirmation or error message).
+    1. Take "Final blog post" and translate it into all those languages {language_list}, one by one.
+    2. Your translation must be natural, fluent, and culturally adapted to each language — it must read like it was originally written by a native SEO copywriter.
+    3. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure.
+    4. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
+    5. Ensure that each translation sounds positive, professional, factual, and engaging.
+    6. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
+    7. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
+    8. Do not translate or alter HTML tags — only translate the visible content inside them.
 
   expected_output: >
-    The result of the "DrupalPublishTool" tool, 
-    e.g., "Successfully created new article. Node ID: <some id>" or an error.
+    all the translations in JSON formatted like that:
+    {
+      "LANGCODE": {
+        "title": "Titre de l'article",
+        "full_article": "<h2>...</h2><p>...</p>..."
+      },
+      "LANGCODE": {
+        "title": "عنوان المقال",
+        "full_article": "<div dir=\"rtl\"><h2>...</h2><p>...</p>...</div>"
+      },
+      ...
+    }
 
-  agent: drupal_publisher
+  agent: translater_agent

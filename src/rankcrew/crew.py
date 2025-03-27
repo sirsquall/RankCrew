@@ -39,19 +39,17 @@ class Rankcrew():
                         verbose=True,
                 )
 
-        
-        @agent
-        def drupal_publisher(self) -> Agent:
-                return Agent(
-                        config=self.agents_config['drupal_publisher'],
-                        tools=[DrupalPublishTool(result_as_answer=True)],
-                        verbose=True,
-                )
-
         @agent
         def seo_manager(self) -> Agent:
                 return Agent(
                         config=self.agents_config['seo_manager'],
+                        verbose=True,
+                )
+        
+        @agent
+        def translater_agent(self) -> Agent:
+                return Agent(
+                        config=self.agents_config['translater_agent'],
                         verbose=True,
                 )
         
@@ -75,12 +73,12 @@ class Rankcrew():
                 return Task(
                         config=self.tasks_config['write_task'],
                 )
-
+        
         @task
-        def publish_task(self) -> Task:
+        def translater_task(self) -> Task:
                 return Task(
-                        config=self.tasks_config['publish_task'],
-                )        
+                        config=self.tasks_config['translater_task'],
+                )
 
         @crew
         def crew(self) -> Crew:
