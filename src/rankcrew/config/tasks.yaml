@@ -72,16 +72,16 @@ translater_task:
     8. Do not translate or alter HTML tags — only translate the visible content inside them.
 
   expected_output: >
-    all the translations in XML formatted like that, this output should be decodable immediatly, just put it like that
+    XML strutured like this one, 
     <articles>
-    <language code=\"en\">
+     <article code=\"en\">
       <title>Welcome Title</title>
       <body>This is the English body</body>
-    </language>
-    <language code=\"es\">
+     </article>
+     <article code=\"es\">
       <title>Título de Bienvenida</title>
       <body>Este es el contenido en español</body>
-    </language>
+     <article>
     </articles>
 
   agent: translater_agent
