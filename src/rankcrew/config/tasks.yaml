@@ -72,7 +72,7 @@ translater_task:
     8. Do not translate or alter HTML tags — only translate the visible content inside them.
 
   expected_output: >
-    XML strutured like this one, 
+    XML strutured like this one, ready to be parsed with nothing else, do not forget the CDATA for the title and body
     <articles>
      <article code=\"en\">
       <title><![CDATA[Welcome Title ]]></title>
@@ -80,7 +80,7 @@ translater_task:
      </article>
      <article code=\"es\">
       <title><![CDATA[Título de Bienvenida]]></title>
-      <body><![CDATA[Este es el contenido en español]]></body>
+      <body><![CDATA[Este es el contenido en español]]>rr</body>
      <article>
     </articles>
 
