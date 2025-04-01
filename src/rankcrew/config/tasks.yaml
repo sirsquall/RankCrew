@@ -75,13 +75,14 @@ translater_task:
     XML strutured like this one, 
     <articles>
      <article code=\"en\">
-      <title>Welcome Title</title>
-      <body>This is the English body</body>
+      <title><![CDATA[Welcome Title ]]></title>
+      <body><![CDATA[This is the English body]]></body>
      </article>
      <article code=\"es\">
-      <title>Título de Bienvenida</title>
-      <body>Este es el contenido en español</body>
+      <title><![CDATA[Título de Bienvenida]]></title>
+      <body><![CDATA[Este es el contenido en español]]></body>
      <article>
     </articles>
 
   agent: translater_agent
+r
