@@ -21,7 +21,7 @@ planner_task:
     5. List at least 10-20 relevant SEO keywords, organized as:
        - Primary Keywords (main intent)
        - Secondary Keywords (supporting context)
-       - Entity Keywords (specific musical titles, performers, or productions)
+       - Entity Keywords (specific {topic} titles, productions)
     6. Provide any additional resources or references that would help the writer (links, quotes, stats, rankings, reviews, etc.).
     7. Format the output as a Markdown report titled "Idea Plan".
     8. Store the title of the blog post as "Post Title" and it should not be longuer than 60 characters
