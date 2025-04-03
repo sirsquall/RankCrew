@@ -16,12 +16,12 @@ planner_task:
   description: >
     1. Review the "Blog Post Ideas" and select one form the list, that shows the highest potential for driving traffic and engagement.
     2. Conduct further research on the chosen idea. Refine SEO keywords or supporting subtopics based on actual search trends and musical theatre interest.
-    3. Include general keyword from {topic}.
     4. Create a detailed content outline, specifying the blog structure (e.g., introduction, body sections, subheadings, conclusion).
-    5. List at least 10-20 relevant SEO keywords, organized as:
-       - Primary Keywords (main intent)
-       - Secondary Keywords (supporting context)
-       - Entity Keywords (specific {topic} titles, productions)
+    5. List at least 20-30 relevant SEO keywords, organized as:
+       - {topic} keyowrd specific/long-tail
+       - Itent keywords that capture the exact intent of potential readers
+       - Compagny specific keyword the list here {company_keyword}
+       - {topic} specific keyword the list here {topic_keyword}
     6. Provide any additional resources or references that would help the writer (links, quotes, stats, rankings, reviews, etc.).
     7. Format the output as a Markdown report titled "Idea Plan".
     8. Store the title of the blog post as "Post Title" and it should not be longuer than 60 characters
@@ -29,7 +29,7 @@ planner_task:
   expected_output: >
     A comprehensive "Idea Plan" in Markdown with:
     - Selected topic
-    - Refined keywords including real musical names and search phrases
+    - Refined keywords including real {topcis} names and search phrases
     - Structured outline with potential H2/H3 headings
     - Helpful references/links to support writing and SEO
     - Metadata suggestions (meta title and meta description)
@@ -63,13 +63,14 @@ write_task:
 translater_task:
   description: >
     1. Take "Final blog post" and translate it into all those languages {language_list}, one by one.
-    2. Your translation must be natural, fluent, and culturally adapted to each language — it must read like it was originally written by a native SEO copywriter.
-    3. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure.
-    4. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
-    5. Ensure that each translation sounds positive, professional, factual, and engaging.
-    6. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
-    7. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
-    8. Do not translate or alter HTML tags — only translate the visible content inside them.
+    2. Make sur that the title is not in the body, as it's separated
+    3. Your translation must be natural, fluent, and culturally adapted to each language — it must read like it was originally written by a native SEO copywriter.
+    4. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure.
+    5. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
+    6. Ensure that each translation sounds positive, professional, factual, and engaging.
+    7. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
+    8. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
+    9. Do not translate or alter HTML tags — only translate the visible content inside them.
 
   expected_output: >
     XML strutured like this one, ready to be parsed with nothing else, do not forget the CDATA for the title and body

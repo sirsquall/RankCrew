@@ -19,8 +19,10 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'manga',
+        'topic': 'singing',
+        'topic_keyword' : 'chant, voix, sont, musique, chants, cours, vocale, vocal, tessiture, notes, chanson, chansons, paris, chanteurs, leurs, lyrique, melodie, musicale, apprendre, registre, vocales, différents, note, type, fréquence, soprano, chanteur, aigue, for, apprentissage, paghjella, female, types, enfant, technique, basse, sonore, texte, expression, opéra, paroles, rôles, ténor, bébé, vie, travers, sons, central, techniques, histoire',
         'company' : 'apolline',
+        'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',
     }
@@ -36,12 +38,14 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        'topic': 'manga',
+        'topic': 'singing',
+        'topic_keyword' : 'chant, voix, sont, musique, chants, cours, vocale, vocal, tessiture, notes, chanson, chansons, paris, chanteurs, leurs, lyrique, melodie, musicale, apprendre, registre, vocales, différents, note, type, fréquence, soprano, chanteur, aigue, for, apprentissage, paghjella, female, types, enfant, technique, basse, sonore, texte, expression, opéra, paroles, rôles, ténor, bébé, vie, travers, sons, central, techniques, histoire',
         'company' : 'apolline',
+        'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',
     }
-
+    
     try:
         Rankcrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
@@ -63,8 +67,10 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        'topic': 'manga',
+        'topic': 'singing',
+        'topic_keyword' : 'chant, voix, sont, musique, chants, cours, vocale, vocal, tessiture, notes, chanson, chansons, paris, chanteurs, leurs, lyrique, melodie, musicale, apprendre, registre, vocales, différents, note, type, fréquence, soprano, chanteur, aigue, for, apprentissage, paghjella, female, types, enfant, technique, basse, sonore, texte, expression, opéra, paroles, rôles, ténor, bébé, vie, travers, sons, central, techniques, histoire',
         'company' : 'apolline',
+        'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',
     }
