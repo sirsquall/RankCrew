@@ -29,7 +29,7 @@ planner_task:
   expected_output: >
     A comprehensive "Idea Plan" in Markdown with:
     - Selected topic
-    - Refined keywords including real {topcis} names and search phrases
+    - Refined keywords including real {topic} names and search phrases
     - Structured outline with potential H2/H3 headings
     - Helpful references/links to support writing and SEO
     - Metadata suggestions (meta title and meta description)
