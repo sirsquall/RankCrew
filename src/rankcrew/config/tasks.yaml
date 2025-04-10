@@ -20,8 +20,8 @@ planner_task:
     5. List at least 20-30 relevant SEO keywords, organized as:
        - {topic} keyowrd specific/long-tail
        - Itent keywords that capture the exact intent of potential readers
-       - Compagny specific keyword the list here {company_keyword}
-       - {topic} specific keyword the list here {topic_keyword}
+       - Compagny specific keyword the list here {company_keyword} you must include them
+       - {topic} specific keyword the list here {topic_keyword}, you must include them
     6. Provide any additional resources or references that would help the writer (links, quotes, stats, rankings, reviews, etc.).
     7. Format the output as a Markdown report titled "Idea Plan".
     8. Store the title of the blog post as "Post Title" and it should not be longuer than 60 characters
