@@ -2,7 +2,7 @@ idea_planner_task:
   description: >
     1. Exclude the {existing_articles} from this research
     2. Research the topic "{topic}" using available data (e.g., Google search, competitor research, keyword tools).
-    3. Compile a list of 10 potential seo blog post ideas that would bring value to {company} audience.
+    3. Compile a list of 10 potential seo blog post ideas that would bring value for this {company} company in this {country} audience.
     4. Provide a short explanation or rationale (1-2 sentences) for each idea, focusing on why it might be good for SEO and brand goals.
     5. Ensure it is easy to read and only includes well-articulated ideas (no fluff).
 
@@ -43,7 +43,7 @@ write_task:
     2. The structure should be in valid HTML:
        - content sections using <h2> for subsections.
        - A concluding paragraph with any call-to-action.
-    3. Incorporate the keywords naturally, maintaining a factual, positive, and good tone.
+    3. Incorporate the keywords naturally, maintaining a ton of voice {ton_of_voice}
     4. Proofread for grammar, spelling, and clarity.
     5. Output the final content as a single HTML string, not an html page, but only the content section of the post
     6. Named this content "Final blog post", and keep the "Post title" ready for publication on {company}.

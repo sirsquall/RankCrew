@@ -25,6 +25,9 @@ def run():
         'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',
+        'country' : 'Switzerland',
+        'ton_of_voice' : 'formal',
+        
     }
 
     try:
@@ -44,6 +47,8 @@ def train():
         'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',
+        'country' : 'Switzerland',
+        'ton_of_voice' : 'formal',
     }
     
     try:
@@ -73,6 +78,8 @@ def test():
         'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',
+        'country' : 'Switzerland',
+        'ton_of_voice' : 'formal',
     }
 
     try:
