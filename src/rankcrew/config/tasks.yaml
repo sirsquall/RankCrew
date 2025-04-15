@@ -18,12 +18,12 @@ planner_task:
     2. Conduct further research on the chosen idea. Refine SEO keywords or supporting subtopics based on actual search trends and musical theatre interest.
     4. Create a detailed content outline, specifying the blog structure (e.g., introduction, body sections, subheadings, conclusion).
     5. List at least 20-30 relevant SEO keywords, organized as:
-       - Primary Keywords:
-           - {topic} specific keyword the list here {topic_keyword}, you must include them
-           - Compagny specific keyword the list here {company_keyword} you must include them
-       - Seconfday
-           -{topic} keyowrd specific/long-tail
-           - Itent keywords that capture the exact intent of potential readers
+      Primary Keywords:
+        {topic} specific keyword the list here {topic_keyword}, you must include them
+        Compagny specific keyword the list here {company_keyword} you must include them
+      Secondary Keywords:
+        {topic} keyowrd specific/long-tail
+        Itent keywords that capture the exact intent of potential readers
     6. Provide any additional resources or references that would help the writer (links, quotes, stats, rankings, reviews, etc.).
     7. Format the output as a Markdown report titled "Idea Plan".
     8. Store the title of the blog post as "Post Title" and it should not be longuer than 60 characters
