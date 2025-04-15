@@ -18,10 +18,12 @@ planner_task:
     2. Conduct further research on the chosen idea. Refine SEO keywords or supporting subtopics based on actual search trends and musical theatre interest.
     4. Create a detailed content outline, specifying the blog structure (e.g., introduction, body sections, subheadings, conclusion).
     5. List at least 20-30 relevant SEO keywords, organized as:
-       - {topic} keyowrd specific/long-tail
-       - Itent keywords that capture the exact intent of potential readers
-       - Compagny specific keyword the list here {company_keyword} you must include them
-       - {topic} specific keyword the list here {topic_keyword}, you must include them
+       - Primary Keywords:
+           - {topic} specific keyword the list here {topic_keyword}, you must include them
+           - Compagny specific keyword the list here {company_keyword} you must include them
+       - Seconfday
+           -{topic} keyowrd specific/long-tail
+           - Itent keywords that capture the exact intent of potential readers
     6. Provide any additional resources or references that would help the writer (links, quotes, stats, rankings, reviews, etc.).
     7. Format the output as a Markdown report titled "Idea Plan".
     8. Store the title of the blog post as "Post Title" and it should not be longuer than 60 characters
@@ -44,10 +46,11 @@ write_task:
        - content sections using <h2> for subsections.
        - A concluding paragraph with any call-to-action.
     3. Incorporate the keywords naturally, maintaining a ton of voice {ton_of_voice}
-    4. Proofread for grammar, spelling, and clarity.
-    5. Output the final content as a single HTML string, not an html page, but only the content section of the post
-    6. Named this content "Final blog post", and keep the "Post title" ready for publication on {company}.
-    7. Don't use complex words, it should be simple to read
+    4. The primary keywords need to be included in the page 10-12 times, and the secondary keyword 2-3 times each, they have been listed by priority order first are more important
+    5. Proofread for grammar, spelling, and clarity.
+    6. Output the final content as a single HTML string, not an html page, but only the content section of the post
+    7. Named this content "Final blog post", and keep the "Post title" ready for publication on {company}.
+    8. Don't use complex words, it should be simple to read
 
 
   expected_output: >
