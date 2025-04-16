@@ -66,7 +66,7 @@ write_task:
 translater_task:
   description: >
     1. Take "Final blog post" and translate it into all those languages {language_list}, one by one.
-    2. Make sur that the title is not in the body, as it's separated
+    2. remove the title in the article body, we should have it only in the article title separated
     3. Your translation must be natural, fluent, and culturally adapted to each language — it must read like it was originally written by a native SEO copywriter.
     4. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure.
     5. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
