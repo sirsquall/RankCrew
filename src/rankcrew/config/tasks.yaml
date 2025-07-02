@@ -41,48 +41,100 @@ planner_task:
 
 write_task:
   description: >
-    1. Using the "Idea Plan," write a final blog post of approximately 2,000 words.
-    2. The structure should be in valid HTML:
-       - content sections using <h2> for subsections.
-       - A concluding paragraph with any call-to-action.
-    3. Incorporate the keywords naturally, maintaining a ton of voice {ton_of_voice}
-    4. The primary keywords need to be included in the page 10-12 times, and the secondary keyword 2-3 times each, they have been listed by priority order first are more important
-    5. Proofread for grammar, spelling, and clarity.
-    6. Output the final content as a single HTML string, not an html page, but only the content section of the post
-    7. Named this content "Final blog post", and keep the "Post title" ready for publication on {company}.
-    8. Don't use complex words, it should be simple to read
-
+    1. Using the "Idea Plan," create a comprehensive, technically excellent SEO article of approximately 2,000 words.
+    2. Focus exclusively on SEO technical excellence, comprehensive coverage, and information architecture.
+    3. Structure the content ONLY as blog post content with HTML elements:
+       - Clear <h2> for main sections and <h3> for subsections
+       - Well-structured <p> paragraphs with semantic HTML elements
+       - Strategic keyword placement and semantic keyword integration
+       - Do NOT include <html>, <head>, <body> or any full page HTML structure
+       - Output ONLY the content that goes inside a blog post container
+    4. Incorporate keywords strategically:
+       - Primary keywords: 10-12 times naturally distributed
+       - Secondary keywords: 2-3 times each, following priority order
+       - Include semantic and LSI keywords for topic comprehensiveness
+    5. Ensure comprehensive topic coverage with expert-level depth and factual accuracy.
+    6. Include supporting elements: statistics, examples, actionable insights, and authoritative references.
+    7. Optimize for search intent satisfaction and user value delivery.
+    8. Do NOT worry about specific brand voice or tone - focus purely on information quality and SEO technical requirements.
 
   expected_output: >
-    - First line the Title
-    - Then the "Final blog post" a complete HTML blog post (~2,000 words) with:
-    - Several <h2> subsections
-    - Properly formatted paragraphs
-    - Overall consistency, SEO-friendly keywords, and a brand-aligned voice.
-    - Ready to be published, no dummy data, well finilized
+    Two separate deliverables:
+    1. "Post Title" - The blog post title (under 60 characters) as a standalone line
+    2. "Technical SEO Article" - ONLY the blog post content (~2,000 words) starting directly with <h2> sections:
+    - Strategic keyword integration and semantic SEO optimization
+    - Expert-level information depth and factual accuracy
+    - NO title repetition in the content - start directly with first <h2> section
+    - NO full HTML page structure - ONLY the content section
+    - Ready for style transformation as content-only HTML elements
+
   agent: content_writer
+
+
+style_task:
+  description: >
+    1. Receive the "Post Title" and "Technical SEO Article" content-only HTML from the content writer.
+    2. Transform the technically excellent content into a perfectly branded, engaging piece that embodies the tone of voice: "{ton_of_voice}".
+    3. Apply advanced o3-powered content transformation techniques:
+       - Sentence rhythm optimization for natural flow
+       - Reader engagement enhancement through psychological persuasion techniques
+       - Brand personality infusion while maintaining informational value
+       - Micro-level word choice refinement for optimal reader experience
+       - Seamless transition creation between sections for narrative coherence
+    4. Preserve ALL technical SEO elements and content-only format:
+       - Exact keyword placement and density
+       - HTML structure with <h2>/<h3>/<p> elements only
+       - Content length and information depth
+       - NO full HTML page structure - maintain content-only format
+       - Keep title separate from content body
+    5. Enhance readability and engagement:
+       - Optimize sentence length variation for reading rhythm
+       - Add emotional hooks and engagement triggers
+       - Ensure consistent brand voice throughout all sections
+       - Create compelling introductions and conclusions
+    6. Proofread for grammar, spelling, tone consistency, and overall brand alignment.
+    7. Ensure the final content feels authentically branded while maintaining all SEO technical benefits.
+    8. Keep the same content-only HTML format - do NOT add full page HTML structure or repeat the title in content.
+
+  expected_output: >
+    Two separate deliverables:
+    1. "Final Post Title" - The refined blog post title embodying the tone of voice
+    2. "Final Styled Blog Post" - A masterfully transformed content-only HTML (~2,000 words) that:
+    - Perfectly embodies the specified tone of voice "{ton_of_voice}"
+    - Flows naturally with optimized readability and engagement
+    - Maintains all SEO technical requirements and keyword optimization
+    - Creates emotional connection while delivering expert information
+    - ONLY contains blog post content starting with <h2> (no title repetition)
+    - Ready for immediate publication in any blog post container
+    - Achieves perfect balance between brand voice and SEO performance
+
+  agent: style_agent
 
 
 translater_task:
   description: >
-    1. Take "Final blog post" and translate it into all those languages {language_list}, one by one.
+    1. Take the "Final Post Title" and "Final Styled Blog Post" and translate them into all those languages {language_list}, one by one.
     2. Your translation must be natural, fluent, and culturally adapted to each language — it must read like it was originally written by a native SEO copywriter.
-    3. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure, but tranlsate everything
-    4. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
-    5. Ensure that each translation maintain a tone of voice {ton_of_voice}.
-    6. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
-    7. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
+    3. Translate the title and content separately:
+       - Translate the "Final Post Title" for the <title> tag
+       - Translate the "Final Styled Blog Post" content for the <body> tag
+       - Do NOT include the title again in the body content
+    4. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure, but translate everything
+    5. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
+    6. Ensure that each translation maintains the tone of voice {ton_of_voice} and brand personality.
+    7. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
+    8. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
 
   expected_output: >
     XML strutured like this one, ready to be parsed with nothing else, do not forget the CDATA for the title and body
     <articles>
      <article code=\"en\">
-      <title><![CDATA[Welcome Title ]]></title>
-      <body><![CDATA[This is the English body]]></body>
+      <title><![CDATA[Welcome Title]]></title>
+      <body><![CDATA[<h2>First Section</h2><p>Content starts directly without repeating the title...</p>]]></body>
      </article>
      <article code=\"es\">
       <title><![CDATA[Título de Bienvenida]]></title>
-      <body><![CDATA[Este es el contenido en español]]>rr</body>
+      <body><![CDATA[<h2>Primera Sección</h2><p>El contenido empieza directamente sin repetir el título...</p>]]></body>
      <article>
     </articles>
 
