@@ -22,11 +22,13 @@ def run():
         'topic': 'singing',
         'topic_keyword' : 'chant, voix, sont, musique, chants, cours, vocale, vocal, tessiture, notes, chanson, chansons, paris, chanteurs, leurs, lyrique, melodie, musicale, apprendre, registre, vocales, différents, note, type, fréquence, soprano, chanteur, aigue, for, apprentissage, paghjella, female, types, enfant, technique, basse, sonore, texte, expression, opéra, paroles, rôles, ténor, bébé, vie, travers, sons, central, techniques, histoire',
         'company' : 'apolline',
+        'company_website' : 'https://www.apolline.art/',
+        'company_info' : 'Apolline is a Swiss music school specializing in art lessons (singing, piono, guitar, drums, theater, musical theater, manga drawing, comics drawing, painting illustration, academic drawing, painting) for children 6-16 years old. They operate ONLY in French-speaking Switzerland (Lausanne, Geneva, etoy, vevey, montreux, sion, fribourg, yverdon, neuchatel). Services: for the music we offer semi-private 2 person, in person only (no online/video lessons, no home visits), group workshops, vocal coaching for children, and for the visual art and theater is group session in our school, no-online. Target audience: Children from 6-16 years old. Teaching approach: Mix of classical and contemporary techniques, personalized pedagogy. Locations: Physical studios. What they DON\'T offer: Online lessons, home visits, digital platforms, mobile apps, recording services',
         'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',
         'country' : 'Switzerland',
-        'ton_of_voice' : 'formal',
+        'ton_of_voice' : 'professional yet accessible',
         
     }
 
@@ -44,6 +46,8 @@ def train():
         'topic': 'singing',
         'topic_keyword' : 'chant, voix, sont, musique, chants, cours, vocale, vocal, tessiture, notes, chanson, chansons, paris, chanteurs, leurs, lyrique, melodie, musicale, apprendre, registre, vocales, différents, note, type, fréquence, soprano, chanteur, aigue, for, apprentissage, paghjella, female, types, enfant, technique, basse, sonore, texte, expression, opéra, paroles, rôles, ténor, bébé, vie, travers, sons, central, techniques, histoire',
         'company' : 'apolline',
+        'company_website' : 'https://www.apolline.art/',
+        'company_info' : 'Apolline is a Swiss music school specializing in art lessons (singing, piono, guitar, drums, theater, musical theater, manga drawing, comics drawing, painting illustration, academic drawing, painting) for children 6-16 years old. They operate ONLY in French-speaking Switzerland (Lausanne, Geneva, etoy, vevey, montreux, sion, fribourg, yverdon, neuchatel). Services: for the music we offer semi-private 2 person, in person only (no online/video lessons, no home visits), group workshops, vocal coaching for children, and for the visual art and theater is group session in our school, no-online. Target audience: Children from 6-16 years old. Teaching approach: Mix of classical and contemporary techniques, personalized pedagogy. Locations: Physical studios. What they DON\'T offer: Online lessons, home visits, digital platforms, mobile apps, recording services',
         'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',
@@ -75,6 +79,8 @@ def test():
         'topic': 'singing',
         'topic_keyword' : 'chant, voix, sont, musique, chants, cours, vocale, vocal, tessiture, notes, chanson, chansons, paris, chanteurs, leurs, lyrique, melodie, musicale, apprendre, registre, vocales, différents, note, type, fréquence, soprano, chanteur, aigue, for, apprentissage, paghjella, female, types, enfant, technique, basse, sonore, texte, expression, opéra, paroles, rôles, ténor, bébé, vie, travers, sons, central, techniques, histoire',
         'company' : 'apolline',
+        'company_website' : 'https://www.apolline.art/',
+        'company_info' : 'Apolline is a Swiss music school specializing in art lessons (singing, piono, guitar, drums, theater, musical theater, manga drawing, comics drawing, painting illustration, academic drawing, painting) for children 6-16 years old. They operate ONLY in French-speaking Switzerland (Lausanne, Geneva, etoy, vevey, montreux, sion, fribourg, yverdon, neuchatel). Services: for the music we offer semi-private 2 person, in person only (no online/video lessons, no home visits), group workshops, vocal coaching for children, and for the visual art and theater is group session in our school, no-online. Target audience: Children from 6-16 years old. Teaching approach: Mix of classical and contemporary techniques, personalized pedagogy. Locations: Physical studios. What they DON\'T offer: Online lessons, home visits, digital platforms, mobile apps, recording services',
         'company_keyword' : 'cours, school',
         'existing_articles' : '',
         'language_list' : 'french, portuguese, arabic',

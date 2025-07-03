@@ -1,32 +1,53 @@
 idea_planner_task:
   description: >
-    1. Exclude the {existing_articles} from this research
-    2. Research the topic "{topic}" using available data (e.g., Google search, competitor research, keyword tools).
-    3. Compile a list of 10 potential seo blog post ideas that would bring value for this {company} company in this {country} audience.
-    4. Provide a short explanation or rationale (1-2 sentences) for each idea, focusing on why it might be good for SEO and brand goals.
-    5. Ensure it is easy to read and only includes well-articulated ideas (no fluff).
+    1. COMPANY ANALYSIS: Review {company_info} to understand:
+       - Services and offerings of {company}
+       - Geographic areas of operation
+       - Target demographic and positioning
+       - Unique value propositions
+       - What they DON'T offer
+       VERIFICATION: Cross-reference with {company_website} for accuracy.
+       IMPORTANT: Only use information explicitly mentioned in the company info.
+    2. RESEARCH SCOPE: Exclude {existing_articles} from this research if provided.
+    3. TOPIC RESEARCH: Research "{topic}" using available data (search trends, competitor analysis, keyword tools).
+    4. IDEA GENERATION: Create 10 potential SEO blog post ideas that:
+       - Answer real user questions about "{topic}"
+       - Have strong ranking potential and search volume
+       - Provide genuine value and helpful information
+       - Can naturally incorporate target keywords
+       - Are relevant to {country} audience when geographical context matters
+       - May have subtle business relevance to {company} (secondary to user value)
+    5. RATIONALE: Provide 1-2 sentences explaining why each idea is valuable for users AND good for SEO.
+    6. QUALITY: Ensure ideas are well-articulated, business-relevant, and easy to read (no fluff).
 
   expected_output: >
-    A clear, concise "Blog Post Ideas" in Markdown, featuring multiple relevant seo blog topic suggestions with brief rationales.
+    A comprehensive report in Markdown format containing:
+    1. "Company Analysis Summary" - Brief overview of {company} services and positioning
+    2. "User Search Analysis" - Research findings on what people search for regarding "{topic}"
+    3. "SEO Opportunities" - Identified gaps and high-value content opportunities
+    4. "Blog Post Ideas" - 10 user-focused SEO blog topic suggestions with brief rationales
+    5. "Company Relevance" (optional) - Brief note on how {company} might naturally fit into selected topics
 
   agent: idea_planner
 
 
 planner_task:
   description: >
-    1. Review the "Blog Post Ideas" and select one form the list, that shows the highest potential for driving traffic and engagement.
-    2. Conduct further research on the chosen idea. Refine SEO keywords or supporting subtopics based on actual search trends and musical theatre interest.
-    4. Create a detailed content outline, specifying the blog structure (e.g., introduction, body sections, subheadings, conclusion).
-    5. List at least 20-30 relevant SEO keywords, organized as:
-      Primary Keywords:
-        {topic} specific keyword the list here {topic_keyword}, you must include them
-        Compagny specific keyword the list here {company_keyword} you must include them
-      Secondary Keywords:
-        {topic} keyowrd specific/long-tail
-        Itent keywords that capture the exact intent of potential readers
-    6. Provide any additional resources or references that would help the writer (links, quotes, stats, rankings, reviews, etc.).
-    7. Format the output as a Markdown report titled "Idea Plan".
-    8. Store the title of the blog post as "Post Title" and it should not be longuer than 60 characters
+    1. TOPIC SELECTION: Review "Blog Post Ideas" and select the one with highest potential for traffic and engagement.
+    2. KEYWORD RESEARCH: Conduct research on the chosen topic and refine SEO keywords based on search trends.
+    3. CONTENT STRUCTURE: Create a detailed content outline with clear blog structure (introduction, body sections, subheadings, conclusion).
+    4. KEYWORD ORGANIZATION: List 20-30 relevant SEO keywords organized as:
+       Primary Keywords: Include required {topic_keyword} and {company_keyword}
+       Secondary Keywords: Long-tail and intent-based keywords for the target audience
+    5. CONTENT GUIDANCE: Provide helpful direction including:
+       - Industry insights and practical tips
+       - User-focused information with clear, accessible explanations
+       - Simple language recommendations over technical jargon
+       - Practical examples to illustrate concepts
+               - Company integration using only verified information from company context
+        - Self-contained content approach (no external references or links)
+    6. FORMAT: Present as Markdown report titled "Idea Plan"
+    7. TITLE: Create blog post title under 60 characters, stored as "Post Title"
 
   expected_output: >
     A comprehensive "Idea Plan" in Markdown with:
@@ -42,7 +63,7 @@ planner_task:
 write_task:
   description: >
     1. Using the "Idea Plan," create a comprehensive, technically excellent SEO article of approximately 2,000 words.
-    2. Focus exclusively on SEO technical excellence, comprehensive coverage, and information architecture.
+    2. PRIMARY OBJECTIVE: Answer the user's search question with valuable, comprehensive information that ranks well.
     3. Structure the content ONLY as blog post content with HTML elements:
        - Clear <h2> for main sections and <h3> for subsections
        - Well-structured <p> paragraphs with semantic HTML elements
@@ -54,9 +75,34 @@ write_task:
        - Secondary keywords: 2-3 times each, following priority order
        - Include semantic and LSI keywords for topic comprehensiveness
     5. Ensure comprehensive topic coverage with expert-level depth and factual accuracy.
-    6. Include supporting elements: statistics, examples, actionable insights, and authoritative references.
-    7. Optimize for search intent satisfaction and user value delivery.
-    8. Do NOT worry about specific brand voice or tone - focus purely on information quality and SEO technical requirements.
+    6. Include supporting elements: statistics, examples, and actionable insights.
+    7. CRITICAL - NO REFERENCES OR LINKS RULE: 
+       - ABSOLUTELY NO references, citations, bibliography, or source lists anywhere in the article
+       - NO "Références", "Sources", "Citations", "Bibliography" sections
+       - NO numbered citations like [1], [2] or (Smith, 2023)
+       - NO mention of studies, reports, or external sources by name
+       - NO external links to websites, resources, or other content
+       - NO internal links or anchor links
+       - Create self-contained content that doesn't reference external materials
+       - If you need to mention data, present it as general knowledge without attribution
+    8. READABILITY REQUIREMENTS:
+       - Use clear, accessible language that non-experts can understand
+       - Keep sentences under 25 words when possible
+       - Break up complex ideas into shorter paragraphs (3-4 sentences max)
+       - Avoid excessive jargon or technical terminology
+       - Use transition words to improve flow between ideas
+       - Write for a general audience, not technical specialists
+    9. Optimize for search intent satisfaction and user value delivery.
+    10. CONTENT BALANCE: 90% informative content + 10% company positioning:
+        - Focus the majority of content on genuinely helpful information
+        - Provide practical advice, tips, and insights users are searching for
+        - Answer the question thoroughly before mentioning any company
+        - Only mention {company} naturally when relevant, mainly toward the end
+        - When mentioning {company}, ONLY use information from {company_info}
+        - Never invent services, digital platforms, links, or features not in {company_info}
+        - Avoid excessive company promotion - keep it subtle and helpful
+    11. Do NOT worry about specific brand voice or tone - focus purely on information quality and SEO technical requirements.
+    12. FINAL VALIDATION: Before finishing, verify that your article contains NO references, citations, links, or source attributions of any kind.
 
   expected_output: >
     Two separate deliverables:
@@ -64,6 +110,8 @@ write_task:
     2. "Technical SEO Article" - ONLY the blog post content (~2,000 words) starting directly with <h2> sections:
     - Strategic keyword integration and semantic SEO optimization
     - Expert-level information depth and factual accuracy
+    - Clear, accessible writing that general audiences can understand
+    - NO references, citations, links, or source attributions anywhere
     - NO title repetition in the content - start directly with first <h2> section
     - NO full HTML page structure - ONLY the content section
     - Ready for style transformation as content-only HTML elements
@@ -74,39 +122,59 @@ write_task:
 style_task:
   description: >
     1. Receive the "Post Title" and "Technical SEO Article" content-only HTML from the content writer.
-    2. Transform the technically excellent content into a perfectly branded, engaging piece that embodies the tone of voice: "{ton_of_voice}".
-    3. Apply advanced o3-powered content transformation techniques:
-       - Sentence rhythm optimization for natural flow
-       - Reader engagement enhancement through psychological persuasion techniques
-       - Brand personality infusion while maintaining informational value
-       - Micro-level word choice refinement for optimal reader experience
-       - Seamless transition creation between sections for narrative coherence
-    4. Preserve ALL technical SEO elements and content-only format:
+    2. Transform the content into an engaging, readable piece that embodies the tone of voice: "{ton_of_voice}" while prioritizing clarity and accessibility.
+    3. READABILITY FOCUS - Apply these content improvements:
+       - Simplify complex sentences and break up dense paragraphs
+       - Replace technical jargon with accessible language
+       - Add engaging subheadings and bullet points for better scanning
+       - Create smooth transitions between ideas using conversational connectors
+       - Use active voice and direct language when possible
+       - Ensure content flows naturally and is easy to understand
+    4. ENGAGEMENT ENHANCEMENT:
+       - Add compelling introductions that hook the reader immediately
+       - Include practical examples and real-world applications
+       - Use storytelling elements to make information more relatable
+       - Create emotional connection while maintaining informativeness
+       - Add calls-to-action and engagement triggers naturally
+    5. Preserve ALL technical SEO elements and content-only format:
        - Exact keyword placement and density
        - HTML structure with <h2>/<h3>/<p> elements only
        - Content length and information depth
        - NO full HTML page structure - maintain content-only format
        - Keep title separate from content body
-    5. Enhance readability and engagement:
-       - Optimize sentence length variation for reading rhythm
-       - Add emotional hooks and engagement triggers
-       - Ensure consistent brand voice throughout all sections
-       - Create compelling introductions and conclusions
-    6. Proofread for grammar, spelling, tone consistency, and overall brand alignment.
-    7. Ensure the final content feels authentically branded while maintaining all SEO technical benefits.
-    8. Keep the same content-only HTML format - do NOT add full page HTML structure or repeat the title in content.
+    6. TONE ADAPTATION - For "{ton_of_voice}" tone:
+       - If "formal": Use professional but accessible language, avoid academic stuffiness
+       - If "conversational": Use friendly, approachable language with personal touches
+       - If "expert": Maintain authority while being clear and understandable
+       - Always prioritize reader comprehension over sophisticated vocabulary
+    7. Proofread for grammar, spelling, tone consistency, and overall readability.
+    8. MAINTAIN SEO-FIRST BALANCE: Preserve the 90% informative content + 10% company positioning ratio:
+       - Keep the focus on helpful, valuable information for users
+       - Maintain subtle company positioning only where naturally relevant
+       - Ensure company mentions feel organic and not overly promotional
+    9. LINK REMOVAL: Remove ALL links from the content:
+       - No external links to websites, resources, or references
+       - No internal links or anchor links
+       - No clickable elements of any kind
+       - Replace any link text with plain text descriptions if needed
+    10. FINAL VALIDATION: Ensure no references, citations, links, or overly technical language remains.
+    11. Keep the same content-only HTML format - do NOT add full page HTML structure or repeat the title in content.
 
   expected_output: >
     Two separate deliverables:
     1. "Final Post Title" - The refined blog post title embodying the tone of voice
-    2. "Final Styled Blog Post" - A masterfully transformed content-only HTML (~2,000 words) that:
-    - Perfectly embodies the specified tone of voice "{ton_of_voice}"
-    - Flows naturally with optimized readability and engagement
+    2. "Final Styled Blog Post" - A highly readable, engaging content-only HTML (~2,000 words) that:
+    - Uses clear, accessible language that general audiences can easily understand
+    - Embodies the specified tone of voice "{ton_of_voice}" without being overly technical or academic
+    - Flows naturally with short sentences, smooth transitions, and logical progression
     - Maintains all SEO technical requirements and keyword optimization
-    - Creates emotional connection while delivering expert information
+    - Creates emotional connection while delivering practical, helpful information
+    - Provides 90% valuable, helpful content that answers user questions
+    - Contains NO references, citations, links, or overly technical jargon
+    - Subtly mentions {company} only when naturally relevant (mainly toward end)
     - ONLY contains blog post content starting with <h2> (no title repetition)
-    - Ready for immediate publication in any blog post container
-    - Achieves perfect balance between brand voice and SEO performance
+    - Ready for immediate publication with excellent readability scores
+    - Achieves perfect balance between informative value, accessibility, and SEO performance
 
   agent: style_agent
 
@@ -121,9 +189,23 @@ translater_task:
        - Do NOT include the title again in the body content
     4. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure, but translate everything
     5. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
-    6. Ensure that each translation maintains the tone of voice {ton_of_voice} and brand personality.
-    7. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
-    8. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
+    6. CRITICAL TRANSLATION RULE: Translate ALL text content including keywords and phrases inside HTML tags like <strong>, <em>, <b>, etc. 
+       For example: "<strong>best singing teacher Zurich</strong>" in French should become "<strong>meilleur professeur de chant Zurich</strong>"
+       ZERO text should remain in the original language - everything must be naturally translated to the target language.
+    7. MANDATORY WORD-BY-WORD VALIDATION: After translating, perform these verification steps:
+       - Scan the entire text for common untranslated English words: "for", "female", "school", "online", "mix", "live", "best", "top", "guide", "how", "what", "when", "where", "why", "and", "or", "but", "with", "from", "to", "in", "on", "at", "by", "of", "the", "a", "an"
+       - Check inside ALL HTML tags for untranslated content
+       - Verify proper names and locations are culturally adapted when appropriate
+       - Ensure numbers, dates, and technical terms follow target language conventions
+       - Replace ANY English words found with proper translations
+         8. SPECIFIC LANGUAGE CHECKS for each languages {language_list}, here you have an example for few languages:
+        - French: Ensure proper accents (é, è, à, ç), check for "le/la/les" articles, verify subjunctive usage
+        - Portuguese: Check for proper Portuguese accents (ã, ç, ê), verify Brazilian vs European variants
+        - Arabic: Ensure proper RTL formatting, check for correct Arabic script, verify cultural appropriateness
+     9. Ensure that each translation maintains the tone of voice {ton_of_voice} and brand personality.
+     10. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
+     11. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
+     12. FINAL VALIDATION: Before submitting, re-read the entire translation to catch any remaining English words or awkward phrasing.
 
   expected_output: >
     XML strutured like this one, ready to be parsed with nothing else, do not forget the CDATA for the title and body
