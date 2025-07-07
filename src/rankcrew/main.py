@@ -29,6 +29,7 @@ def run():
         'language_list' : 'french, portuguese, arabic',
         'country' : 'Switzerland',
         'ton_of_voice' : 'professional yet accessible',
+        'current_date': datetime.now().strftime("%B %d, %Y"),
         
     }
 
@@ -53,6 +54,7 @@ def train():
         'language_list' : 'french, portuguese, arabic',
         'country' : 'Switzerland',
         'ton_of_voice' : 'formal',
+        'current_date': datetime.now().strftime("%B %d, %Y"),
     }
     
     try:
@@ -86,6 +88,7 @@ def test():
         'language_list' : 'french, portuguese, arabic',
         'country' : 'Switzerland',
         'ton_of_voice' : 'formal',
+        'current_date': datetime.now().strftime("%B %d, %Y"),
     }
 
     try:

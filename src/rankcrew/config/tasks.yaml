@@ -10,23 +10,26 @@ idea_planner_task:
        IMPORTANT: Only use information explicitly mentioned in the company info.
     2. RESEARCH SCOPE: Exclude {existing_articles} from this research if provided.
     3. TOPIC RESEARCH: Research "{topic}" using available data (search trends, competitor analysis, keyword tools).
-    4. IDEA GENERATION: Create 10 potential SEO blog post ideas that:
+    4. CURRENT TRENDS ANALYSIS: Consider what's trending and relevant regarding "{topic}" as of {current_date} to ensure ideas feel fresh and current.
+    5. IDEA GENERATION: Create 10 potential SEO blog post ideas that:
        - Answer real user questions about "{topic}"
        - Have strong ranking potential and search volume
        - Provide genuine value and helpful information
        - Can naturally incorporate target keywords
        - Are relevant to {country} audience when geographical context matters
+       - Feel current and up-to-date as of {current_date}
        - May have subtle business relevance to {company} (secondary to user value)
-    5. RATIONALE: Provide 1-2 sentences explaining why each idea is valuable for users AND good for SEO.
-    6. QUALITY: Ensure ideas are well-articulated, business-relevant, and easy to read (no fluff).
+    6. RATIONALE: Provide 1-2 sentences explaining why each idea is valuable for users AND good for SEO.
+    7. QUALITY: Ensure ideas are well-articulated, business-relevant, and easy to read (no fluff).
 
   expected_output: >
     A comprehensive report in Markdown format containing:
     1. "Company Analysis Summary" - Brief overview of {company} services and positioning
     2. "User Search Analysis" - Research findings on what people search for regarding "{topic}"
-    3. "SEO Opportunities" - Identified gaps and high-value content opportunities
-    4. "Blog Post Ideas" - 10 user-focused SEO blog topic suggestions with brief rationales
-    5. "Company Relevance" (optional) - Brief note on how {company} might naturally fit into selected topics
+    3. "Current Trends Analysis" - Current developments and trends related to "{topic}" as of {current_date}
+    4. "SEO Opportunities" - Identified gaps and high-value content opportunities
+    5. "Blog Post Ideas" - 10 user-focused SEO blog topic suggestions with brief rationales that feel current and relevant
+    6. "Company Relevance" (optional) - Brief note on how {company} might naturally fit into selected topics
 
   agent: idea_planner
 
@@ -40,12 +43,13 @@ planner_task:
        Primary Keywords: Include required {topic_keyword} and {company_keyword}
        Secondary Keywords: Long-tail and intent-based keywords for the target audience
     5. CONTENT GUIDANCE: Provide helpful direction including:
-       - Industry insights and practical tips
+       - Industry insights and practical tips that feel current as of {current_date}
        - User-focused information with clear, accessible explanations
        - Simple language recommendations over technical jargon
        - Practical examples to illustrate concepts
-               - Company integration using only verified information from company context
-        - Self-contained content approach (no external references or links)
+       - Company integration using only verified information from company context
+       - Self-contained content approach (no external references or links)
+       - Ensure all recommendations and advice feel up-to-date for {current_date}
     6. FORMAT: Present as Markdown report titled "Idea Plan"
     7. TITLE: Create blog post title under 60 characters, stored as "Post Title"
 
@@ -55,6 +59,7 @@ planner_task:
     - Refined keywords including real {topic} names and search phrases
     - Structured outline with potential H2/H3 headings
     - Helpful references/links to support writing and SEO
+    - Content guidance that feels current and relevant as of {current_date}
     - Metadata suggestions (meta title and meta description)
 
   agent: content_planner
@@ -76,7 +81,12 @@ write_task:
        - Include semantic and LSI keywords for topic comprehensiveness
     5. Ensure comprehensive topic coverage with expert-level depth and factual accuracy.
     6. Include supporting elements: statistics, examples, and actionable insights.
-    7. CRITICAL - NO REFERENCES OR LINKS RULE: 
+    7. CONTENT FRESHNESS FOR SEO: 
+       - Present information as current and up-to-date as of {current_date}
+       - Use language that suggests the content is recent and relevant
+       - When appropriate, naturally mention "as of {current_date}" for time-sensitive information
+       - Ensure all advice and recommendations feel current for {current_date}
+    8. CRITICAL - NO REFERENCES OR LINKS RULE: 
        - ABSOLUTELY NO references, citations, bibliography, or source lists anywhere in the article
        - NO "Références", "Sources", "Citations", "Bibliography" sections
        - NO numbered citations like [1], [2] or (Smith, 2023)
@@ -85,15 +95,15 @@ write_task:
        - NO internal links or anchor links
        - Create self-contained content that doesn't reference external materials
        - If you need to mention data, present it as general knowledge without attribution
-    8. READABILITY REQUIREMENTS:
+    9. READABILITY REQUIREMENTS:
        - Use clear, accessible language that non-experts can understand
        - Keep sentences under 25 words when possible
        - Break up complex ideas into shorter paragraphs (3-4 sentences max)
        - Avoid excessive jargon or technical terminology
        - Use transition words to improve flow between ideas
        - Write for a general audience, not technical specialists
-    9. Optimize for search intent satisfaction and user value delivery.
-    10. CONTENT BALANCE: 90% informative content + 10% company positioning:
+    10. Optimize for search intent satisfaction and user value delivery.
+    11. CONTENT BALANCE: 90% informative content + 10% company positioning:
         - Focus the majority of content on genuinely helpful information
         - Provide practical advice, tips, and insights users are searching for
         - Answer the question thoroughly before mentioning any company
@@ -101,8 +111,8 @@ write_task:
         - When mentioning {company}, ONLY use information from {company_info}
         - Never invent services, digital platforms, links, or features not in {company_info}
         - Avoid excessive company promotion - keep it subtle and helpful
-    11. Do NOT worry about specific brand voice or tone - focus purely on information quality and SEO technical requirements.
-    12. FINAL VALIDATION: Before finishing, verify that your article contains NO references, citations, links, or source attributions of any kind.
+    12. Do NOT worry about specific brand voice or tone - focus purely on information quality and SEO technical requirements.
+    13. FINAL VALIDATION: Before finishing, verify that your article contains NO references, citations, links, or source attributions of any kind.
 
   expected_output: >
     Two separate deliverables:
@@ -111,6 +121,7 @@ write_task:
     - Strategic keyword integration and semantic SEO optimization
     - Expert-level information depth and factual accuracy
     - Clear, accessible writing that general audiences can understand
+    - Content that feels fresh and current as of {current_date}
     - NO references, citations, links, or source attributions anywhere
     - NO title repetition in the content - start directly with first <h2> section
     - NO full HTML page structure - ONLY the content section
@@ -142,6 +153,7 @@ style_task:
        - Content length and information depth
        - NO full HTML page structure - maintain content-only format
        - Keep title separate from content body
+       - Maintain content freshness and relevance as of {current_date}
     6. TONE ADAPTATION - For "{ton_of_voice}" tone:
        - If "formal": Use professional but accessible language, avoid academic stuffiness
        - If "conversational": Use friendly, approachable language with personal touches
@@ -175,6 +187,7 @@ style_task:
     - ONLY contains blog post content starting with <h2> (no title repetition)
     - Ready for immediate publication with excellent readability scores
     - Achieves perfect balance between informative value, accessibility, and SEO performance
+    - Feels current and fresh as of {current_date} for optimal SEO impact
 
   agent: style_agent
 
@@ -189,23 +202,24 @@ translater_task:
        - Do NOT include the title again in the body content
     4. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure, but translate everything
     5. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
-    6. CRITICAL TRANSLATION RULE: Translate ALL text content including keywords and phrases inside HTML tags like <strong>, <em>, <b>, etc. 
+    6. CONTENT FRESHNESS: Ensure all translations maintain the sense of currency and freshness from the original content, preserving references to {current_date} and keeping all information feeling current and up-to-date.
+    7. CRITICAL TRANSLATION RULE: Translate ALL text content including keywords and phrases inside HTML tags like <strong>, <em>, <b>, etc. 
        For example: "<strong>best singing teacher Zurich</strong>" in French should become "<strong>meilleur professeur de chant Zurich</strong>"
        ZERO text should remain in the original language - everything must be naturally translated to the target language.
-    7. MANDATORY WORD-BY-WORD VALIDATION: After translating, perform these verification steps:
+    8. MANDATORY WORD-BY-WORD VALIDATION: After translating, perform these verification steps:
        - Scan the entire text for common untranslated English words: "for", "female", "school", "online", "mix", "live", "best", "top", "guide", "how", "what", "when", "where", "why", "and", "or", "but", "with", "from", "to", "in", "on", "at", "by", "of", "the", "a", "an"
        - Check inside ALL HTML tags for untranslated content
        - Verify proper names and locations are culturally adapted when appropriate
        - Ensure numbers, dates, and technical terms follow target language conventions
        - Replace ANY English words found with proper translations
-         8. SPECIFIC LANGUAGE CHECKS for each languages {language_list}, here you have an example for few languages:
+    9. SPECIFIC LANGUAGE CHECKS for each languages {language_list}, here you have an example for few languages:
         - French: Ensure proper accents (é, è, à, ç), check for "le/la/les" articles, verify subjunctive usage
         - Portuguese: Check for proper Portuguese accents (ã, ç, ê), verify Brazilian vs European variants
         - Arabic: Ensure proper RTL formatting, check for correct Arabic script, verify cultural appropriateness
-     9. Ensure that each translation maintains the tone of voice {ton_of_voice} and brand personality.
-     10. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
-     11. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
-     12. FINAL VALIDATION: Before submitting, re-read the entire translation to catch any remaining English words or awkward phrasing.
+    10. Ensure that each translation maintains the tone of voice {ton_of_voice} and brand personality.
+    11. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
+    12. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
+    13. FINAL VALIDATION: Before submitting, re-read the entire translation to catch any remaining English words or awkward phrasing.
 
   expected_output: >
     XML strutured like this one, ready to be parsed with nothing else, do not forget the CDATA for the title and body
