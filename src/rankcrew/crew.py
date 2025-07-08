@@ -4,16 +4,26 @@ from crewai_tools import SerperDevTool
 from rankcrew.tools.custom_tool import DrupalPublishTool
 import os
 
-# Configure OpenAI o3 model
+# Configure OpenAI model dynamically
 openai_api_key = os.getenv("OPENAI_API_KEY")
+model_name = os.getenv("OPENAI_MODEL", "o1")  # Default to gpt-3.5-turbo if not set
+
 if openai_api_key:
     os.environ["OPENAI_API_KEY"] = openai_api_key
 
-o3_llm = LLM(
-    model="o3",
-    drop_params=True,
-    additional_drop_params=["stop"]
-)
+# Configure LLM based on model type
+if model_name == "o3":
+    # o3 model needs special parameters
+    llm = LLM(
+        model=model_name,
+        drop_params=True,
+        additional_drop_params=["stop"]
+    )
+else:
+    # Standard configuration for other models
+    llm = LLM(
+        model=model_name
+    )
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -35,7 +45,7 @@ class Rankcrew():
     def idea_planner(self) -> Agent:    
         return Agent(           
             config=self.agents_config['idea_planner'],
-            llm=o3_llm,
+            llm=llm,
             verbose=True,
         )
     
@@ -43,7 +53,7 @@ class Rankcrew():
     def content_planner(self) -> Agent:
         return Agent(
             config=self.agents_config['content_planner'],
-            llm=o3_llm,
+            llm=llm,
             verbose=True,
         )
 
@@ -51,7 +61,7 @@ class Rankcrew():
     def content_writer(self) -> Agent:
         return Agent(
             config=self.agents_config['content_writer'],
-            llm=o3_llm,
+            llm=llm,
             verbose=True,
         )
 
@@ -59,7 +69,7 @@ class Rankcrew():
     def style_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['style_agent'],
-            llm=o3_llm,
+            llm=llm,
             verbose=True,
         )
 
@@ -67,7 +77,7 @@ class Rankcrew():
     def seo_manager(self) -> Agent:
         return Agent(
             config=self.agents_config['seo_manager'],
-            llm=o3_llm,
+            llm=llm,
             verbose=True,
         )
     
@@ -75,7 +85,7 @@ class Rankcrew():
     def translater_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['translater_agent'],
-            llm=o3_llm,
+            llm=llm,
             verbose=True,
         )
     
