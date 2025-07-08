@@ -37,30 +37,48 @@ idea_planner_task:
 planner_task:
   description: >
     1. TOPIC SELECTION: Review "Blog Post Ideas" and select the one with highest potential for traffic and engagement.
-    2. KEYWORD RESEARCH: Conduct research on the chosen topic and refine SEO keywords based on search trends.
-    3. CONTENT STRUCTURE: Create a detailed content outline with clear blog structure (introduction, body sections, subheadings, conclusion).
-    4. KEYWORD ORGANIZATION: List 20-30 relevant SEO keywords organized as:
-       Primary Keywords: Include required {topic_keyword} and {company_keyword}
-       Secondary Keywords: Long-tail and intent-based keywords for the target audience
-    5. CONTENT GUIDANCE: Provide helpful direction including:
-       - Industry insights and practical tips that feel current as of {current_date}
-       - User-focused information with clear, accessible explanations
+    2. KEYWORD RESEARCH AND MAPPING: Conduct research on the chosen topic and create a comprehensive keyword strategy:
+       - PRIORITIZE: ALL keywords from {topic_keyword} must be included prominently with specific frequency targets
+       - SECONDARY: Include {company_keyword} only when naturally relevant to the main topic
+       - RESEARCH: Add 15-20 additional semantic/LSI keywords for comprehensive SEO coverage that directly relate to the main topic
+    3. CONTENT STRUCTURE: Create a detailed content outline with clear blog structure optimized for keywords and topic focus:
+       - Introduction with primary keyword placement and topic definition
+       - Body sections with strategic keyword distribution focused on the main topic
+       - Subheadings that incorporate target keywords naturally and stay within topic boundaries
+       - Conclusion that reinforces main keywords and topic relevance
+    4. KEYWORD ORGANIZATION AND MAPPING: Organize keywords as:
+       Primary Keywords: ALL keywords from {topic_keyword} (these are MANDATORY - minimum 4-5 times each)
+       Secondary Keywords: Keywords from {company_keyword} when relevant to the main topic
+       Semantic Keywords: 15-20 Long-tail and intent-based keywords for the target audience that directly support the main topic
+       MAPPING: Assign specific keywords to specific sections/headings for strategic placement with frequency targets
+    5. TOPIC FOCUS REQUIREMENTS:
+       - Plan content that stays STRICTLY within the main topic boundaries
+       - Avoid planning sections about unrelated occasions, contexts, or subjects
+       - If topic is eco-responsible evening wear, plan ONLY content about that specific subject
+       - Do NOT plan content about job interviews, weddings, business meetings, or other unrelated contexts unless specifically relevant to the main topic
+       - Ensure all planned sections directly serve the main topic and user search intent
+    6. CONTENT GUIDANCE: Provide helpful direction including:
+       - Industry insights and practical tips that feel current as of {current_date} and relate directly to the main topic
+       - User-focused information with clear, accessible explanations about the specific topic
        - Simple language recommendations over technical jargon
-       - Practical examples to illustrate concepts
-       - Company integration using only verified information from company context
+       - Practical examples that illustrate concepts within the main topic scope
+       - Minimal company integration using only verified information from company context when naturally relevant
        - Self-contained content approach (no external references or links)
        - Ensure all recommendations and advice feel up-to-date for {current_date}
-    6. FORMAT: Present as Markdown report titled "Idea Plan"
-    7. TITLE: Create blog post title under 60 characters, stored as "Post Title"
+       - KEYWORD DENSITY targets for each section (2-3% overall)
+    7. FORMAT: Present as Markdown report titled "Idea Plan"
+    8. TITLE: Create blog post title under 60 characters that includes primary keywords and focuses on the main topic
 
   expected_output: >
     A comprehensive "Idea Plan" in Markdown with:
-    - Selected topic
-    - Refined keywords including real {topic} names and search phrases
-    - Structured outline with potential H2/H3 headings
-    - Helpful references/links to support writing and SEO
-    - Content guidance that feels current and relevant as of {current_date}
-    - Metadata suggestions (meta title and meta description)
+    - Selected topic with keyword focus rationale and strict topic boundaries definition
+    - COMPLETE keyword mapping including ALL keywords from {topic_keyword} with frequency targets (4-5 times minimum each)
+    - Structured outline with keyword-optimized H2/H3 headings that stay within the main topic scope
+    - Specific keyword placement strategy for each section with density targets
+    - Content guidance that prioritizes SEO optimization and topic focus, feeling current as of {current_date}
+    - Metadata suggestions (meta title and meta description with keywords)
+    - Keyword density targets and distribution plan
+    - Topic boundary guidelines to prevent content drift to unrelated subjects
 
   agent: content_planner
 
@@ -68,25 +86,33 @@ planner_task:
 write_task:
   description: >
     1. Using the "Idea Plan," create a comprehensive, technically excellent SEO article of approximately 2,000 words.
-    2. PRIMARY OBJECTIVE: Answer the user's search question with valuable, comprehensive information that ranks well.
+    2. PRIMARY OBJECTIVE: Answer the user's search question with valuable, comprehensive information optimized for the specific keywords provided, staying strictly within the main topic boundaries.
     3. Structure the content ONLY as blog post content with HTML elements:
        - Clear <h2> for main sections and <h3> for subsections
        - Well-structured <p> paragraphs with semantic HTML elements
        - Strategic keyword placement and semantic keyword integration
        - Do NOT include <html>, <head>, <body> or any full page HTML structure
        - Output ONLY the content that goes inside a blog post container
-    4. Incorporate keywords strategically:
-       - Primary keywords: 10-12 times naturally distributed
-       - Secondary keywords: 2-3 times each, following priority order
-       - Include semantic and LSI keywords for topic comprehensiveness
-    5. Ensure comprehensive topic coverage with expert-level depth and factual accuracy.
-    6. Include supporting elements: statistics, examples, and actionable insights.
-    7. CONTENT FRESHNESS FOR SEO: 
+    4. KEYWORD INTEGRATION REQUIREMENTS (CRITICAL):
+       - PRIMARY KEYWORDS from {topic_keyword}: Include EVERY keyword at least 4-5 times naturally distributed
+       - SECONDARY KEYWORDS from {company_keyword}: Include 1-2 times when naturally relevant to the main topic
+       - SEMANTIC KEYWORDS: Include related LSI keywords that directly support the main topic
+       - KEYWORD DENSITY: Maintain 2-3% overall keyword density focused on primary keywords
+       - KEYWORD PLACEMENT: Include primary keywords in H2/H3 headings when natural and relevant
+    5. TOPIC FOCUS REQUIREMENTS (CRITICAL):
+       - Stay STRICTLY within the boundaries of the main topic throughout the entire article
+       - Avoid mentioning unrelated occasions, contexts, or uses unless specifically relevant to the main topic
+       - If the topic is eco-responsible evening wear, write ONLY about that specific subject
+       - Do NOT include content about job interviews, weddings, business meetings, or other occasions unless directly related to the main topic
+       - Focus exclusively on the specific subject users are searching for
+    6. Ensure comprehensive topic coverage with expert-level depth and factual accuracy within the specific topic scope.
+    7. Include supporting elements: statistics, examples, and actionable insights directly related to the main topic.
+    8. CONTENT FRESHNESS FOR SEO: 
        - Present information as current and up-to-date as of {current_date}
        - Use language that suggests the content is recent and relevant
        - When appropriate, naturally mention "as of {current_date}" for time-sensitive information
        - Ensure all advice and recommendations feel current for {current_date}
-    8. CRITICAL - NO REFERENCES OR LINKS RULE: 
+    9. NO EXTERNAL REFERENCES POLICY:
        - ABSOLUTELY NO references, citations, bibliography, or source lists anywhere in the article
        - NO "Références", "Sources", "Citations", "Bibliography" sections
        - NO numbered citations like [1], [2] or (Smith, 2023)
@@ -95,37 +121,39 @@ write_task:
        - NO internal links or anchor links
        - Create self-contained content that doesn't reference external materials
        - If you need to mention data, present it as general knowledge without attribution
-    9. READABILITY REQUIREMENTS:
-       - Use clear, accessible language that non-experts can understand
-       - Keep sentences under 25 words when possible
-       - Break up complex ideas into shorter paragraphs (3-4 sentences max)
-       - Avoid excessive jargon or technical terminology
-       - Use transition words to improve flow between ideas
-       - Write for a general audience, not technical specialists
-    10. Optimize for search intent satisfaction and user value delivery.
-    11. CONTENT BALANCE: 90% informative content + 10% company positioning:
-        - Focus the majority of content on genuinely helpful information
-        - Provide practical advice, tips, and insights users are searching for
-        - Answer the question thoroughly before mentioning any company
-        - Only mention {company} naturally when relevant, mainly toward the end
+    10. READABILITY REQUIREMENTS:
+        - Use clear, accessible language that non-experts can understand
+        - Keep sentences under 25 words when possible
+        - Break up complex ideas into shorter paragraphs (3-4 sentences max)
+        - Avoid excessive jargon or technical terminology
+        - Use transition words to improve flow between ideas
+        - Write for a general audience, not technical specialists
+    11. Optimize for search intent satisfaction and user value delivery within the specific topic scope.
+    12. CONTENT BALANCE: 98% informative content + 2% company positioning:
+        - Focus the vast majority of content on genuinely helpful information optimized for SEO about the specific topic
+        - Provide practical advice, tips, and insights users are searching for with target keywords
+        - Answer the question thoroughly with keyword optimization before mentioning any company
+        - Only mention {company} very briefly when relevant to the specific topic, in the last sentence only
         - When mentioning {company}, ONLY use information from {company_info}
         - Never invent services, digital platforms, links, or features not in {company_info}
-        - Avoid excessive company promotion - keep it subtle and helpful
-    12. Do NOT worry about specific brand voice or tone - focus purely on information quality and SEO technical requirements.
-    13. FINAL VALIDATION: Before finishing, verify that your article contains NO references, citations, links, or source attributions of any kind.
+        - Keep company mentions to maximum 1 sentence total
+    13. Do NOT worry about specific brand voice or tone - focus purely on information quality and SEO technical requirements.
+    14. FINAL VALIDATION: Before finishing, verify that your article contains NO references, citations, links, or source attributions AND that ALL keywords from {topic_keyword} are included with proper frequency AND that the content stays strictly within the main topic boundaries.
 
   expected_output: >
     Two separate deliverables:
     1. "Post Title" - The blog post title (under 60 characters) as a standalone line
     2. "Technical SEO Article" - ONLY the blog post content (~2,000 words) starting directly with <h2> sections:
-    - Strategic keyword integration and semantic SEO optimization
-    - Expert-level information depth and factual accuracy
+    - Strategic integration of ALL keywords from {topic_keyword} with optimal density (4-5 times each minimum)
+    - Expert-level information depth and factual accuracy strictly within the main topic scope
     - Clear, accessible writing that general audiences can understand
     - Content that feels fresh and current as of {current_date}
     - NO references, citations, links, or source attributions anywhere
     - NO title repetition in the content - start directly with first <h2> section
     - NO full HTML page structure - ONLY the content section
-    - Ready for style transformation as content-only HTML elements
+    - Maximum 2% company positioning (1 sentence maximum)
+    - Strict adherence to main topic without drift to unrelated subjects or occasions
+    - Ready for style transformation as content-only HTML elements with optimal SEO structure and topic focus
 
   agent: content_writer
 
@@ -133,60 +161,73 @@ write_task:
 style_task:
   description: >
     1. Receive the "Post Title" and "Technical SEO Article" content-only HTML from the content writer.
-    2. Transform the content into an engaging, readable piece that embodies the tone of voice: "{ton_of_voice}" while prioritizing clarity and accessibility.
-    3. READABILITY FOCUS - Apply these content improvements:
-       - Simplify complex sentences and break up dense paragraphs
-       - Replace technical jargon with accessible language
-       - Add engaging subheadings and bullet points for better scanning
+    2. Transform the content into an engaging, readable piece that embodies the tone of voice: "{ton_of_voice}" while prioritizing SEO optimization and maintaining strict topic focus.
+    3. CRITICAL PRESERVATION REQUIREMENTS:
+       - Preserve ALL keywords from {topic_keyword} with EXACT frequency and placement
+       - Maintain the 98% SEO content / 2% company positioning ratio
+       - Keep strict topic boundaries without adding unrelated content or examples
+       - Do NOT introduce content about unrelated occasions, contexts, or subjects during style transformation
+    4. READABILITY FOCUS - Apply these content improvements while maintaining SEO and topic focus:
+       - Simplify complex sentences and break up dense paragraphs without losing keywords
+       - Replace technical jargon with accessible language while maintaining topic-specific terminology
+       - Add engaging subheadings and bullet points for better scanning within the main topic scope
        - Create smooth transitions between ideas using conversational connectors
        - Use active voice and direct language when possible
-       - Ensure content flows naturally and is easy to understand
-    4. ENGAGEMENT ENHANCEMENT:
-       - Add compelling introductions that hook the reader immediately
-       - Include practical examples and real-world applications
-       - Use storytelling elements to make information more relatable
-       - Create emotional connection while maintaining informativeness
-       - Add calls-to-action and engagement triggers naturally
-    5. Preserve ALL technical SEO elements and content-only format:
-       - Exact keyword placement and density
+       - Ensure content flows naturally and is easy to understand while staying strictly on-topic
+    5. ENGAGEMENT ENHANCEMENT within topic boundaries:
+       - Add compelling introductions that hook the reader immediately about the specific topic
+       - Include practical examples and real-world applications directly related to the main topic
+       - Use storytelling elements to make information more relatable within the topic scope
+       - Create emotional connection while maintaining informativeness about the specific subject
+       - Add calls-to-action and engagement triggers naturally related to the main topic
+    6. Preserve ALL technical SEO elements and content-only format:
+       - Exact keyword placement and density from {topic_keyword}
        - HTML structure with <h2>/<h3>/<p> elements only
-       - Content length and information depth
+       - Content length and information depth within the topic scope
        - NO full HTML page structure - maintain content-only format
        - Keep title separate from content body
        - Maintain content freshness and relevance as of {current_date}
-    6. TONE ADAPTATION - For "{ton_of_voice}" tone:
-       - If "formal": Use professional but accessible language, avoid academic stuffiness
-       - If "conversational": Use friendly, approachable language with personal touches
-       - If "expert": Maintain authority while being clear and understandable
+    7. TONE ADAPTATION - For "{ton_of_voice}" tone while maintaining topic focus:
+       - If "pédagogique": Use educational, instructional language about the specific topic
+       - If "expert": Maintain authority while being clear and understandable about the subject
+       - If "élégant": Use sophisticated language without being pretentious, focused on the topic
+       - If "engagé": Show passion and commitment for the specific subject matter
        - Always prioritize reader comprehension over sophisticated vocabulary
-    7. Proofread for grammar, spelling, tone consistency, and overall readability.
-    8. MAINTAIN SEO-FIRST BALANCE: Preserve the 90% informative content + 10% company positioning ratio:
-       - Keep the focus on helpful, valuable information for users
-       - Maintain subtle company positioning only where naturally relevant
+       - NEVER add examples or content from unrelated contexts during tone adaptation
+    8. Proofread for grammar, spelling, tone consistency, and overall readability while maintaining topic focus.
+    9. MAINTAIN SEO-FIRST BALANCE: Preserve the 98% informative content + 2% company positioning ratio:
+       - Keep the focus on helpful, valuable information for users about the specific topic
+       - Maintain minimal company positioning only where naturally relevant to the main topic
        - Ensure company mentions feel organic and not overly promotional
-    9. LINK REMOVAL: Remove ALL links from the content:
-       - No external links to websites, resources, or references
-       - No internal links or anchor links
-       - No clickable elements of any kind
-       - Replace any link text with plain text descriptions if needed
-    10. FINAL VALIDATION: Ensure no references, citations, links, or overly technical language remains.
-    11. Keep the same content-only HTML format - do NOT add full page HTML structure or repeat the title in content.
+    10. TOPIC BOUNDARY ENFORCEMENT:
+        - Do NOT add stylistic elements that introduce unrelated subjects or contexts
+        - Keep all examples and illustrations directly related to the main topic
+        - Avoid adding content about unrelated occasions, uses, or contexts during style transformation
+        - Maintain the strict topic focus established in the original technical content
+    11. LINK REMOVAL: Remove ALL links from the content:
+        - No external links to websites, resources, or references
+        - No internal links or anchor links
+        - No clickable elements of any kind
+        - Replace any link text with plain text descriptions if needed
+    12. FINAL VALIDATION: Ensure no references, citations, links, or overly technical language remains AND that ALL keywords from {topic_keyword} are preserved with correct frequency AND that content stays strictly within the main topic boundaries.
+    13. Keep the same content-only HTML format - do NOT add full page HTML structure or repeat the title in content.
 
   expected_output: >
     Two separate deliverables:
-    1. "Final Post Title" - The refined blog post title embodying the tone of voice
+    1. "Final Post Title" - The refined blog post title embodying the tone of voice and including primary keywords
     2. "Final Styled Blog Post" - A highly readable, engaging content-only HTML (~2,000 words) that:
-    - Uses clear, accessible language that general audiences can easily understand
+    - Uses clear, accessible language that general audiences can easily understand about the specific topic
     - Embodies the specified tone of voice "{ton_of_voice}" without being overly technical or academic
-    - Flows naturally with short sentences, smooth transitions, and logical progression
-    - Maintains all SEO technical requirements and keyword optimization
-    - Creates emotional connection while delivering practical, helpful information
-    - Provides 90% valuable, helpful content that answers user questions
+    - Flows naturally with short sentences, smooth transitions, and logical progression within the topic scope
+    - Maintains ALL SEO technical requirements and keyword optimization from {topic_keyword}
+    - Creates emotional connection while delivering practical, helpful information about the specific subject
+    - Provides 98% valuable, helpful content that answers user questions about the main topic
     - Contains NO references, citations, links, or overly technical jargon
-    - Subtly mentions {company} only when naturally relevant (mainly toward end)
+    - Subtly mentions {company} only when naturally relevant to the main topic (maximum 1 sentence)
     - ONLY contains blog post content starting with <h2> (no title repetition)
-    - Ready for immediate publication with excellent readability scores
-    - Achieves perfect balance between informative value, accessibility, and SEO performance
+    - Stays STRICTLY within the main topic boundaries without drift to unrelated subjects
+    - Ready for immediate publication with excellent readability scores and topic focus
+    - Achieves perfect balance between informative value, accessibility, SEO performance, and topic relevance
     - Feels current and fresh as of {current_date} for optimal SEO impact
 
   agent: style_agent
