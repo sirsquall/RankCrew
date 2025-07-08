@@ -213,7 +213,15 @@ style_task:
     13. Keep the same content-only HTML format - do NOT add full page HTML structure or repeat the title in content.
 
   expected_output: >
-    Two separate deliverables:
+    CRITICAL: Output MUST be formatted EXACTLY as follows:
+    
+    ### **Final Post Title**
+    [The refined blog post title here]
+    
+    ### **Final Styled Blog Post**
+    [The styled blog post content here]
+    
+    Two separate deliverables formatted with the above structure:
     1. "Final Post Title" - The refined blog post title embodying the tone of voice and including primary keywords
     2. "Final Styled Blog Post" - A highly readable, engaging content-only HTML (~2,000 words) that:
     - Uses clear, accessible language that general audiences can easily understand about the specific topic
@@ -235,35 +243,40 @@ style_task:
 
 translater_task:
   description: >
-    1. Take the "Final Post Title" and "Final Styled Blog Post" and translate them into all those languages {language_list}, one by one.
-    2. Your translation must be natural, fluent, and culturally adapted to each language — it must read like it was originally written by a native SEO copywriter.
-    3. Translate the title and content separately:
-       - Translate the "Final Post Title" for the <title> tag
+    DEPENDENCY: This task MUST receive the complete output from the Brand Voice & Style Specialist (style_task) which contains both "### **Final Post Title**" and "### **Final Styled Blog Post**" sections.
+    1. IMPORTANT: Look for the section marked "### **Final Post Title**" in the Brand Voice & Style Specialist output and extract the title that comes immediately after it. This is the exact title you must translate.
+    2. Take the "Final Post Title" and "Final Styled Blog Post" and translate them into all those languages {language_list}, one by one.
+    3. Your translation must be natural, fluent, and culturally adapted to each language — it must read like it was originally written by a native SEO copywriter.
+    4. Translate the title and content separately:
+       - MANDATORY: Extract the exact title that appears after "### **Final Post Title**" in the previous agent's output
+       - Translate this extracted "Final Post Title" for the <title> tag
        - Translate the "Final Styled Blog Post" content for the <body> tag
        - Do NOT include the title again in the body content
-    4. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure, but translate everything
-    5. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
-    6. CONTENT FRESHNESS: Ensure all translations maintain the sense of currency and freshness from the original content, preserving references to {current_date} and keeping all information feeling current and up-to-date.
-    7. CRITICAL TRANSLATION RULE: Translate ALL text content including keywords and phrases inside HTML tags like <strong>, <em>, <b>, etc. 
+    5. Preserve the structure and tags of the original HTML (e.g., <h2>, <p>, <ul>, <li>, <strong>, etc.) — do not remove or alter the structure, but translate everything
+    6. Carefully translate key SEO elements: titles, headings, keywords, lists, and emphasized terms. Maintain SEO integrity (including keyword usage, subheadings, and readability).
+    7. CONTENT FRESHNESS: Ensure all translations maintain the sense of currency and freshness from the original content, preserving references to {current_date} and keeping all information feeling current and up-to-date.
+    8. CRITICAL TRANSLATION RULE: Translate ALL text content including keywords and phrases inside HTML tags like <strong>, <em>, <b>, etc. 
        For example: "<strong>best singing teacher Zurich</strong>" in French should become "<strong>meilleur professeur de chant Zurich</strong>"
        ZERO text should remain in the original language - everything must be naturally translated to the target language.
-    8. MANDATORY WORD-BY-WORD VALIDATION: After translating, perform these verification steps:
+    9. MANDATORY WORD-BY-WORD VALIDATION: After translating, perform these verification steps:
        - Scan the entire text for common untranslated English words: "for", "female", "school", "online", "mix", "live", "best", "top", "guide", "how", "what", "when", "where", "why", "and", "or", "but", "with", "from", "to", "in", "on", "at", "by", "of", "the", "a", "an"
        - Check inside ALL HTML tags for untranslated content
        - Verify proper names and locations are culturally adapted when appropriate
        - Ensure numbers, dates, and technical terms follow target language conventions
        - Replace ANY English words found with proper translations
-    9. SPECIFIC LANGUAGE CHECKS for each languages {language_list}, here you have an example for few languages:
+    10. SPECIFIC LANGUAGE CHECKS for each languages {language_list}, here you have an example for few languages:
         - French: Ensure proper accents (é, è, à, ç), check for "le/la/les" articles, verify subjunctive usage
         - Portuguese: Check for proper Portuguese accents (ã, ç, ê), verify Brazilian vs European variants
         - Arabic: Ensure proper RTL formatting, check for correct Arabic script, verify cultural appropriateness
-    10. Ensure that each translation maintains the tone of voice {ton_of_voice} and brand personality.
-    11. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
-    12. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
-    13. FINAL VALIDATION: Before submitting, re-read the entire translation to catch any remaining English words or awkward phrasing.
+    11. Ensure that each translation maintains the tone of voice {ton_of_voice} and brand personality.
+    12. Proofread each version to eliminate spelling, grammar, or clarity issues. Final output must be publication-ready.
+    13. For RTL (right-to-left) languages like Arabic or Hebrew, wrap the content in a <div dir="rtl"> ... </div>.
+    14. FINAL VALIDATION: Before submitting, re-read the entire translation to catch any remaining English words or awkward phrasing.
 
   expected_output: >
-    XML strutured like this one, ready to be parsed with nothing else, do not forget the CDATA for the title and body
+    XML structured like this one, ready to be parsed with nothing else, do not forget the CDATA for the title and body.
+    CRITICAL: The title in each <title> tag MUST be the exact translation of the title that appears after "### **Final Post Title**" in the Brand Voice & Style Specialist output.
+    
     <articles>
      <article code=\"en\">
       <title><![CDATA[Welcome Title]]></title>
