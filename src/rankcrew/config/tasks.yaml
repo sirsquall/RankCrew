@@ -38,7 +38,7 @@ planner_task:
   description: >
     1. TOPIC SELECTION: Review "Blog Post Ideas" and select the one with highest potential for traffic and engagement.
     2. KEYWORD RESEARCH AND MAPPING: Conduct research on the chosen topic and create a comprehensive keyword strategy:
-       - PRIORITIZE: ALL keywords from {topic_keyword} must be included prominently with specific frequency targets
+       - PRIORITIZE: ALL keywords from {topic_keyword} must be included with specific frequency targets based on priority
        - SECONDARY: Include {company_keyword} only when naturally relevant to the main topic
        - RESEARCH: Add 15-20 additional semantic/LSI keywords for comprehensive SEO coverage that directly relate to the main topic
     3. CONTENT STRUCTURE: Create a detailed content outline with clear blog structure optimized for keywords and topic focus:
@@ -47,10 +47,11 @@ planner_task:
        - Subheadings that incorporate target keywords naturally and stay within topic boundaries
        - Conclusion that reinforces main keywords and topic relevance
     4. KEYWORD ORGANIZATION AND MAPPING: Organize keywords as:
-       Primary Keywords: ALL keywords from {topic_keyword} (these are MANDATORY - minimum 4-5 times each)
-       Secondary Keywords: Keywords from {company_keyword} when relevant to the main topic
+       Primary Keywords (First 17 from {topic_keyword}): MANDATORY - maximum 10-15 times each, distributed naturally
+       Secondary Keywords (Remaining from {topic_keyword}): MANDATORY - 4-6 times each, used strategically
+       Company Keywords: Keywords from {company_keyword} when relevant to the main topic (2-3 times max)
        Semantic Keywords: 15-20 Long-tail and intent-based keywords for the target audience that directly support the main topic
-       MAPPING: Assign specific keywords to specific sections/headings for strategic placement with frequency targets
+       MAPPING: Assign specific keywords to specific sections/headings with clear frequency limits to prevent overuse
     5. TOPIC FOCUS REQUIREMENTS:
        - Plan content that stays STRICTLY within the main topic boundaries
        - Avoid planning sections about unrelated occasions, contexts, or subjects
@@ -72,12 +73,15 @@ planner_task:
   expected_output: >
     A comprehensive "Idea Plan" in Markdown with:
     - Selected topic with keyword focus rationale and strict topic boundaries definition
-    - COMPLETE keyword mapping including ALL keywords from {topic_keyword} with frequency targets (4-5 times minimum each)
+    - COMPLETE keyword mapping with tiered frequency targets:
+      * Primary keywords (first 17 from {topic_keyword}): maximum 10-15 times each
+      * Secondary keywords (remaining from {topic_keyword}): 4-6 times each
+      * Company keywords: 2-3 times when naturally relevant
     - Structured outline with keyword-optimized H2/H3 headings that stay within the main topic scope
-    - Specific keyword placement strategy for each section with density targets
+    - Specific keyword placement strategy for each section with frequency limits to prevent overuse
     - Content guidance that prioritizes SEO optimization and topic focus, feeling current as of {current_date}
     - Metadata suggestions (meta title and meta description with keywords)
-    - Keyword density targets and distribution plan
+    - Keyword density targets and distribution plan with frequency caps
     - Topic boundary guidelines to prevent content drift to unrelated subjects
 
   agent: content_planner
@@ -94,11 +98,12 @@ write_task:
        - Do NOT include <html>, <head>, <body> or any full page HTML structure
        - Output ONLY the content that goes inside a blog post container
     4. KEYWORD INTEGRATION REQUIREMENTS (CRITICAL):
-       - PRIMARY KEYWORDS from {topic_keyword}: Include EVERY keyword at least 4-5 times naturally distributed
-       - SECONDARY KEYWORDS from {company_keyword}: Include 1-2 times when naturally relevant to the main topic
+       - PRIMARY KEYWORDS (First 17 from {topic_keyword}): Include maximum 10-15 times each, naturally distributed
+       - SECONDARY KEYWORDS (Remaining from {topic_keyword}): Include 4-6 times each, strategically placed
+       - COMPANY KEYWORDS from {company_keyword}: Include 2-3 times when naturally relevant to the main topic
        - SEMANTIC KEYWORDS: Include related LSI keywords that directly support the main topic
-       - KEYWORD DENSITY: Maintain 2-3% overall keyword density focused on primary keywords
-       - KEYWORD PLACEMENT: Include primary keywords in H2/H3 headings when natural and relevant
+       - KEYWORD DENSITY: Maintain 2-3% overall keyword density with frequency caps to prevent overuse
+       - KEYWORD PLACEMENT: Include keywords in H2/H3 headings when natural and relevant, respecting frequency limits
     5. TOPIC FOCUS REQUIREMENTS (CRITICAL):
        - Stay STRICTLY within the boundaries of the main topic throughout the entire article
        - Avoid mentioning unrelated occasions, contexts, or uses unless specifically relevant to the main topic
@@ -144,7 +149,9 @@ write_task:
     Two separate deliverables:
     1. "Post Title" - The blog post title (under 60 characters) as a standalone line
     2. "Technical SEO Article" - ONLY the blog post content (~2,000 words) starting directly with <h2> sections:
-    - Strategic integration of ALL keywords from {topic_keyword} with optimal density (4-5 times each minimum)
+    - Strategic integration of keywords with tiered frequency limits:
+      * Primary keywords (first 17 from {topic_keyword}): maximum 10-15 times each
+      * Secondary keywords (remaining from {topic_keyword}): 4-6 times each
     - Expert-level information depth and factual accuracy strictly within the main topic scope
     - Clear, accessible writing that general audiences can understand
     - Content that feels fresh and current as of {current_date}
@@ -163,7 +170,10 @@ style_task:
     1. Receive the "Post Title" and "Technical SEO Article" content-only HTML from the content writer.
     2. Transform the content into an engaging, readable piece that embodies the tone of voice: "{ton_of_voice}" while prioritizing SEO optimization and maintaining strict topic focus.
     3. CRITICAL PRESERVATION REQUIREMENTS:
-       - Preserve ALL keywords from {topic_keyword} with EXACT frequency and placement
+       - Preserve keyword frequency limits from {topic_keyword}:
+         * Primary keywords (first 17): maximum 10-15 times each
+         * Secondary keywords (remaining): 4-6 times each
+       - If keywords exceed frequency limits, replace excess usage with natural synonyms or variations
        - Maintain the 98% SEO content / 2% company positioning ratio
        - Keep strict topic boundaries without adding unrelated content or examples
        - Do NOT introduce content about unrelated occasions, contexts, or subjects during style transformation
@@ -181,7 +191,8 @@ style_task:
        - Create emotional connection while maintaining informativeness about the specific subject
        - Add calls-to-action and engagement triggers naturally related to the main topic
     6. Preserve ALL technical SEO elements and content-only format:
-       - Exact keyword placement and density from {topic_keyword}
+       - Keyword placement and density within frequency limits from {topic_keyword}
+       - Use synonyms or variations for keywords that exceed the frequency caps
        - HTML structure with <h2>/<h3>/<p> elements only
        - Content length and information depth within the topic scope
        - NO full HTML page structure - maintain content-only format
@@ -209,7 +220,7 @@ style_task:
         - No internal links or anchor links
         - No clickable elements of any kind
         - Replace any link text with plain text descriptions if needed
-    12. FINAL VALIDATION: Ensure no references, citations, links, or overly technical language remains AND that ALL keywords from {topic_keyword} are preserved with correct frequency AND that content stays strictly within the main topic boundaries.
+    12. FINAL VALIDATION: Ensure no references, citations, links, or overly technical language remains AND that keywords from {topic_keyword} respect frequency limits (primary: max 10-15, secondary: 4-6 times) using synonyms for overuse AND that content stays strictly within the main topic boundaries.
     13. Keep the same content-only HTML format - do NOT add full page HTML structure or repeat the title in content.
 
   expected_output: >
@@ -227,7 +238,8 @@ style_task:
     - Uses clear, accessible language that general audiences can easily understand about the specific topic
     - Embodies the specified tone of voice "{ton_of_voice}" without being overly technical or academic
     - Flows naturally with short sentences, smooth transitions, and logical progression within the topic scope
-    - Maintains ALL SEO technical requirements and keyword optimization from {topic_keyword}
+    - Maintains SEO requirements with proper keyword frequency limits from {topic_keyword} (primary: max 10-15, secondary: 4-6 times)
+    - Uses synonyms and variations when original keywords would exceed frequency caps
     - Creates emotional connection while delivering practical, helpful information about the specific subject
     - Provides 98% valuable, helpful content that answers user questions about the main topic
     - Contains NO references, citations, links, or overly technical jargon
