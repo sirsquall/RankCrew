@@ -8,7 +8,19 @@ idea_planner_task:
        - What they DON'T offer
        VERIFICATION: Cross-reference with {company_website} for accuracy.
        IMPORTANT: Only use information explicitly mentioned in the company info.
-    2. RESEARCH SCOPE: Exclude {existing_articles} from this research if provided.
+    2. EXISTING CONTENT ANALYSIS & AVOIDANCE: CRITICAL - Thoroughly review {existing_articles} to identify:
+       - Exact topics already covered
+       - Similar themes and approaches (e.g., "Guide to choosing", "How to select", "Best practices for")
+       - Semantic similarities (different wording but same concept)
+       - Target audiences already addressed (e.g., children, adults, beginners)
+       - Angles and perspectives already explored
+       MANDATORY REQUIREMENT: Generate ideas that are DISTINCTLY DIFFERENT from existing content.
+       SIMILARITY CHECK: Each new idea must pass this test:
+       - Does it cover a completely different aspect of the topic?
+       - Does it target a different audience or use case?
+       - Does it approach the subject from a unique angle?
+       - Would someone search for this using different keywords than existing content?
+       If any idea feels similar to existing content, REJECT it and create a genuinely different alternative.
     3. TOPIC RESEARCH: Research "{topic}" using available data (search trends, competitor analysis, keyword tools).
     4. CURRENT TRENDS ANALYSIS: Consider what's trending and relevant regarding "{topic}" as of {current_date} to ensure ideas feel fresh and current.
     5. IDEA GENERATION: Create 10 potential SEO blog post ideas that:
@@ -19,17 +31,25 @@ idea_planner_task:
        - Are relevant to {country} audience when geographical context matters
        - Feel current and up-to-date as of {current_date}
        - May have subtle business relevance to {company} (secondary to user value)
-    6. RATIONALE: Provide 1-2 sentences explaining why each idea is valuable for users AND good for SEO.
-    7. QUALITY: Ensure ideas are well-articulated, business-relevant, and easy to read (no fluff).
+       - Are COMPLETELY DIFFERENT from existing content in {existing_articles}
+       - Explore unexplored angles, audiences, or aspects of the topic
+    6. DIFFERENTIATION VALIDATION: For each generated idea, explicitly verify:
+       - How it differs from existing content
+       - What unique value it provides
+       - Why it fills a gap not covered by existing articles
+    7. RATIONALE: Provide 1-2 sentences explaining why each idea is valuable for users AND good for SEO, plus confirmation that it's distinct from existing content.
+    8. QUALITY: Ensure ideas are well-articulated, business-relevant, and easy to read (no fluff).
 
   expected_output: >
     A comprehensive report in Markdown format containing:
     1. "Company Analysis Summary" - Brief overview of {company} services and positioning
-    2. "User Search Analysis" - Research findings on what people search for regarding "{topic}"
-    3. "Current Trends Analysis" - Current developments and trends related to "{topic}" as of {current_date}
-    4. "SEO Opportunities" - Identified gaps and high-value content opportunities
-    5. "Blog Post Ideas" - 10 user-focused SEO blog topic suggestions with brief rationales that feel current and relevant
-    6. "Company Relevance" (optional) - Brief note on how {company} might naturally fit into selected topics
+    2. "Existing Content Analysis" - Review of {existing_articles} identifying covered topics, themes, and approaches to avoid
+    3. "User Search Analysis" - Research findings on what people search for regarding "{topic}"
+    4. "Current Trends Analysis" - Current developments and trends related to "{topic}" as of {current_date}
+    5. "SEO Opportunities" - Identified gaps and high-value content opportunities NOT covered by existing articles
+    6. "Blog Post Ideas" - 10 user-focused SEO blog topic suggestions that are DISTINCTLY DIFFERENT from existing content
+    7. "Differentiation Validation" - For each idea, explicit explanation of how it differs from existing content and what unique value it provides
+    8. "Company Relevance" (optional) - Brief note on how {company} might naturally fit into selected topics
 
   agent: idea_planner
 
